@@ -6,6 +6,7 @@ package database.tables;
 
 import connectDB.connectDB;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -61,7 +62,27 @@ public class EditPersonTable {
         }
     }
     
-//    public void deletePerson(int iban) {
-//        Connection con = connect.connectionDB();
-//    }
+    //Create Classes to make everything easier
+    public void updatePerson(Person person) {
+        try {
+            Connection con = connect.connectionDB();
+            Statement stm = con.createStatement();
+            
+            String query = "UPDATE `person` SET `iban`='" + person.getIban() + "',`name`='" + person.getName() 
+                    + "',`balance`='" + person.getBalance() + "',`exp_date`='" + person.getExp_date() + "',`debt_limit`='" 
+                    + person.getDebt_limit() + "',`debt`='" + person.getDebt() + "' WHERE iban='" + person.getIban() + "'";
+            
+            System.out.println("Edit PersonTable this is the update query: " + query);
+            
+            stm.execute(query);
+            
+            stm.close();
+            con.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(EditPersonTable.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditPersonTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

@@ -4,6 +4,11 @@
  */
 package mainClasses;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author stelios
@@ -55,5 +60,23 @@ public class Seller {
         this.profit = profit;
     }
     
-    
+    // setUp seller from a given ResultSet
+    public void setUpFromResultSet(ResultSet rs) {
+        try {
+            this.iban = rs.getString(1);
+            this.name = rs.getString(2);
+            this.debt = rs.getString(3);
+            this.promithia = rs.getString(4);
+            this.profit = rs.getString(5);
+        } catch (SQLException ex) {
+            Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    }
+        
+        //print all function
+        public void print(){
+        System.out.println("IBAN: " + this.iban + ", name: " + this.name + 
+                ", debt: " + this.debt + ", promithia:" + this.promithia +
+                ", profit:" + this.profit);
+    }
 }

@@ -4,6 +4,8 @@
  */
 package mainClasses;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,10 +24,10 @@ public class Person {
     String balance;
     String debt;
     String debt_limit;
-    Date exp_date;
+    String exp_date;
     String iban;
     String name;
-
+    
     public String getBalance() {
         return balance;
     }
@@ -50,11 +52,11 @@ public class Person {
         this.debt_limit = debt_limit;
     }
 
-    public Date getExp_date() {
+    public String getExp_date() {
         return exp_date;
     }
 
-    public void setExp_date(Date exp_date) {
+    public void setExp_date(String date) {
         this.exp_date = exp_date;
     }
 
@@ -76,24 +78,34 @@ public class Person {
 
     public void setUpPerson(HttpServletRequest req) {
         
-        try {
             String exp_date_string = req.getParameter("exp_date");
-            Date exp_date = new SimpleDateFormat("yyyy-MM-dd").parse(exp_date_string);
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            String date = formatter.format(exp_date);
-            
+
             this.setIban(req.getParameter("iban"));
             this.setName(req.getParameter("name"));
             this.setBalance(req.getParameter("balance"));
             this.setDebt(req.getParameter("debt"));
             this.setDebt_limit(req.getParameter("debt_limit"));
             // special way for date
-            this.setExp_date(exp_date);
-            
-        } catch (ParseException ex) {
-            Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            this.setExp_date(exp_date_string);
     }
 
+    public void setUpFromResultSet(ResultSet rs) {
+        try {
+            this.iban = rs.getString(1);
+            this.name = rs.getString(2);
+            this.balance = rs.getString(3);
+            this.exp_date = rs.getString(4);
+            this.debt_limit = rs.getString(5);
+            this.debt = rs.getString(6);
+        } catch (SQLException ex) {
+            Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    }
+    
+    public void print(){
+        System.out.println("IBAN: " + this.iban + ", name: " + this.name + ", balance: " 
+                + this.balance + ", exp_date: " + this.exp_date + ", debt_limit: " 
+                + this.debt_limit + ", debt: " + this.debt);
+    }
     
 }
