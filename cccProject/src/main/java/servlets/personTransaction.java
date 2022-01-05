@@ -22,6 +22,10 @@ import mainClasses.PersonTransaction;
  *
  * @author stelios
  */
+
+//TODO FIX ON BALANCE ON BUYER AND ON SELLER AND CHECK IF THE BALANCE IS ENOUGH
+// THIS VERSION IS TOO STANDARD ONLY INSERTS IN THE DATABASE
+
 public class personTransaction extends HttpServlet {
 
     /**
