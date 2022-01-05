@@ -1,0 +1,5 @@
+servlets/findIBAN.class
+database/tables/EditPersonTable.class
+mainClasses/Person.class
+servlets/newPerson.class
+connectDB/connectDB.class
