@@ -1,4 +1,5 @@
 /home/stelios/Desktop/hy_360 project/cccProject/src/main/java/database/tables/EditPersonTable.java
+<<<<<<< HEAD
 /home/stelios/Desktop/hy_360 project/cccProject/src/main/java/mainClasses/Seller.java
 /home/stelios/Desktop/hy_360 project/cccProject/src/main/java/servlets/deletePerson.java
 /home/stelios/Desktop/hy_360 project/cccProject/src/main/java/servlets/findIBAN.java
@@ -6,6 +7,12 @@
 /home/stelios/Desktop/hy_360 project/cccProject/src/main/java/mainClasses/PersonTransaction.java
 /home/stelios/Desktop/hy_360 project/cccProject/src/main/java/servlets/getPerson.java
 /home/stelios/Desktop/hy_360 project/cccProject/src/main/java/servlets/personTransaction.java
+=======
+/home/stelios/Desktop/hy_360 project/cccProject/src/main/java/servlets/deletePerson.java
+/home/stelios/Desktop/hy_360 project/cccProject/src/main/java/servlets/findIBAN.java
+/home/stelios/Desktop/hy_360 project/cccProject/src/main/java/connectDB/connectDB.java
+/home/stelios/Desktop/hy_360 project/cccProject/src/main/java/servlets/getPerson.java
+>>>>>>> fdedc9f518c2eb3b8ddcf4c7a8916804307f03a9
 /home/stelios/Desktop/hy_360 project/cccProject/src/main/java/mainClasses/Person.java
 /home/stelios/Desktop/hy_360 project/cccProject/src/main/java/servlets/getAllPersons.java
 /home/stelios/Desktop/hy_360 project/cccProject/src/main/java/servlets/newPerson.java
