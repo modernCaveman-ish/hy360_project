@@ -20,13 +20,10 @@
         <servlet-name>getPerson</servlet-name>
         <servlet-class>servlets.getPerson</servlet-class>
     </servlet>
-<<<<<<< HEAD
     <servlet>
-        <servlet-name>personTransaction</servlet-name>
-        <servlet-class>servlets.personTransaction</servlet-class>
+        <servlet-name>agoraPerson</servlet-name>
+        <servlet-class>servlets.agoraPerson</servlet-class>
     </servlet>
-=======
->>>>>>> fdedc9f518c2eb3b8ddcf4c7a8916804307f03a9
     <servlet-mapping>
         <servlet-name>findIBAN</servlet-name>
         <url-pattern>/findIBAN</url-pattern>
@@ -47,16 +44,11 @@
         <servlet-name>getPerson</servlet-name>
         <url-pattern>/getPerson</url-pattern>
     </servlet-mapping>
-<<<<<<< HEAD
     <servlet-mapping>
-        <servlet-name>personTransaction</servlet-name>
-        <url-pattern>/personTransaction</url-pattern>
+        <servlet-name>agoraPerson</servlet-name>
+        <url-pattern>/agoraPerson</url-pattern>
     </servlet-mapping>
-=======
->>>>>>> fdedc9f518c2eb3b8ddcf4c7a8916804307f03a9
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
 </web-app>
