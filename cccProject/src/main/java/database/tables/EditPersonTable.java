@@ -85,4 +85,25 @@ public class EditPersonTable {
             Logger.getLogger(EditPersonTable.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    //TODO create delete insert person for the editPersonTable CRUD: CREATE, READ, UPDATE, DELETE
+    
+    public void deletePerson(String iban){
+        try {
+            Connection con = connect.connectionDB();
+            Statement stm = con.createStatement();
+            
+            String query = "DELETE FROM `person` WHERE iban = '" + iban +"' ";
+            
+            stm.execute(query);
+            stm.close();
+            con.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(EditPersonTable.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditPersonTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+    }
 }

@@ -28,6 +28,10 @@
         <servlet-name>returnPerson</servlet-name>
         <servlet-class>servlets.returnPerson</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Test</servlet-name>
+        <servlet-class>servlets.Test</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>findIBAN</servlet-name>
         <url-pattern>/findIBAN</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>returnPerson</servlet-name>
         <url-pattern>/returnPerson</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Test</servlet-name>
+        <url-pattern>/Test</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
