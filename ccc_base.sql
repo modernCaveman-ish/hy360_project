@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 05, 2022 at 01:13 PM
+-- Generation Time: Jan 06, 2022 at 03:16 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -60,11 +60,11 @@ CREATE TABLE `company_transaction` (
 
 CREATE TABLE `person` (
   `iban` int(16) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `balance` int(11) NOT NULL,
-  `exp_date` date NOT NULL,
-  `debt_limit` int(11) NOT NULL,
-  `debt` int(11) NOT NULL
+  `name` varchar(50) DEFAULT NULL,
+  `balance` int(11) DEFAULT NULL,
+  `exp_date` date DEFAULT NULL,
+  `debt_limit` int(11) DEFAULT NULL,
+  `debt` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -72,8 +72,8 @@ CREATE TABLE `person` (
 --
 
 INSERT INTO `person` (`iban`, `name`, `balance`, `exp_date`, `debt_limit`, `debt`) VALUES
-(7, 'jamesBond', 12, '2021-12-09', 123, 32),
-(123, 'qq', 1, '2022-01-13', 0, 2),
+(7, 'jamesBond', 69, '2021-12-09', 123, 32),
+(69, 'blakas', 19, '2022-01-01', 19, 19),
 (1231, 'dsf', 423, '2022-01-04', 423, 2);
 
 -- --------------------------------------------------------
@@ -96,7 +96,8 @@ CREATE TABLE `person_transaction` (
 --
 
 INSERT INTO `person_transaction` (`id`, `iban_person`, `iban_seller`, `type`, `cost`, `tr_date`) VALUES
-(3, 12, 21, 'PISTWSH', 12, '2022-01-12');
+(3, 12, 21, 'PISTWSH', 12, '2022-01-12'),
+(4, 12, 21, 'XREWSH', 100, '2020-01-01');
 
 -- --------------------------------------------------------
 
@@ -117,6 +118,7 @@ CREATE TABLE `seller` (
 --
 
 INSERT INTO `seller` (`iban`, `name`, `debt`, `promithia`, `profit`) VALUES
+(321, 'baporaki', 69, 50, 10),
 (1234, 'test_seller', 0, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -185,7 +187,7 @@ ALTER TABLE `company_transaction`
 -- AUTO_INCREMENT for table `person_transaction`
 --
 ALTER TABLE `person_transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
