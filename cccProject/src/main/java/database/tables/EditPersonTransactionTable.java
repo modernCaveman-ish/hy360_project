@@ -103,7 +103,7 @@ public class EditPersonTransactionTable {
         }
     }
     
-    public void deleteSeller(String iban_person, String iban_seller) {
+    public void deletePersonTransaction(String iban_person, String iban_seller) {
         try {
             Connection con = connect.connectionDB();
             Statement stm = con.createStatement();
