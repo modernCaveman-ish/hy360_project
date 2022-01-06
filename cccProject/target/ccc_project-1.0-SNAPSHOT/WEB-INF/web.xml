@@ -36,6 +36,10 @@
         <servlet-name>newCompany</servlet-name>
         <servlet-class>servlets.newCompany</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteCompany</servlet-name>
+        <servlet-class>servlets.deleteCompany</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>findIBAN</servlet-name>
         <url-pattern>/findIBAN</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>newCompany</servlet-name>
         <url-pattern>/newCompany</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteCompany</servlet-name>
+        <url-pattern>/deleteCompany</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

@@ -7,9 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    This is the company page
-    <h2>New company</h2>
-        </div>
+    <h1>company page</h1>
+        <div>
             <div id="newCompanyForm">
             <h3>New Company</h3>
             <form action="newCompany" method="post">
@@ -20,6 +19,13 @@
                  balance <input type="text" name="balance" id="balance"> <br>
                 exp_date<input type="date" name="exp_date" id="exp_date"> <br>
                 <input type="submit" value="newCompany">
+            </form>
+        </div>
+        <div id="deleteCompanyForm" method="post">
+            <h3>Delete Company</h3>
+            <form action="deleteCompany" method="post">
+                IBAN<input type="text" name="iban" id="iban"> <br>
+                <input type="submit" value="deleteCompany">
             </form>
         </div>
 </body>

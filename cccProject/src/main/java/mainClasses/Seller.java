@@ -13,6 +13,8 @@ import java.util.logging.Logger;
  *
  * @author stelios
  */
+
+ // needs function setUpFromRequest
 public class Seller {
     String iban;
     String name;
