@@ -40,51 +40,7 @@ public class newPerson extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ParseException, SQLException, ClassNotFoundException {
-//        //Delete this 
-//        connectDB connect = new connectDB();
-//        Connection con = connect.connectionDB();
-//        Statement st = con.createStatement();
-//        
-//        Person person = new Person();
-//        
-//        String exp_date_string = request.getParameter("exp_date");
-//        Date exp_date = new SimpleDateFormat("yyyy-MM-dd").parse(exp_date_string);
-//        
-//        person.setIban(request.getParameter("iban"));
-//        person.setName(request.getParameter("name"));
-//        person.setBalance(request.getParameter("balance"));
-//        person.setDebt(request.getParameter("debt"));
-//        person.setDebt_limit(request.getParameter("debt_limit"));
-//        person.setExp_date(exp_date);
-//        
-//        //EditPersonTable ept = new EditPersonTable();
-//        
-//        String query = "INSERT INTO `person` (`iban`, `name`, `balance`, `exp_date`, `debt_limit`, `debt`) "
-//                    + "VALUES "
-//                    + "('" + person.getIban() + "', "
-//                    + "'" +  person.getName() + "', "
-//                    + "'" +  person.getBalance() + "', "
-//                    + "'" + person.getExp_date() + "', "
-//                    + "'" + person.getDebt_limit() + "', "
-//                    + "'" +  person.getDebt() +"')";
-//        
-////        st.executeQuery(query);
-//        
-//        //Delete
-//        ResultSet rs = st.executeQuery(query);
-//        String name = "";
-//        
-//        while (rs.next()) {
-//                name = rs.getString("name");
-//                System.out.print(name);
-//            }
-//        
-//        st.close();
-//        
-        
-        
-//        ept.createNewPerson(person);
-        
+
         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -148,14 +104,6 @@ public class newPerson extends HttpServlet {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             String date = formatter.format(exp_date);
 
-            
-//            person.setIban(request.getParameter("iban"));
-//            person.setName(request.getParameter("name"));
-//            person.setBalance(request.getParameter("balance"));
-//            person.setDebt(request.getParameter("debt"));
-//            person.setDebt_limit(request.getParameter("debt_limit"));
-//            person.setExp_date(exp_date);
-            
             person.setUpPerson(request);
 
             System.out.println("NAME:" + person.getName());
