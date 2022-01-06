@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Seller page</h1>
+        <div id="newSellerForm" >
+            <h3>New Seller</h3>
+            <form action="newSeller" method="post">
+                IBAN<input type="text" name="iban" id="iban"> <br>
+                name <input type="text" name="name" id="name"> <br>
+                debt<input type="text" name="debt" id="debt"> <br>
+                promithia<input type="text" name="promithia" id="promithia"> <br>
+                profit<input type="text" name="profit" id="profit"> <br>             
+                <input type="submit" value="newSeller">
+            </form>
+        </div>
+        <div id="deleteSellerForm" method="post">
+            <h3>Delete Seller</h3>
+            <form action="deleteSeller" method="post">
+                IBAN<input type="text" name="iban" id="iban"> <br>
+                <input type="submit" value="deleteSeller">
+            </form>
+        </div>  
+</body>
+</html>

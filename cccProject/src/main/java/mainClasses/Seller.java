@@ -8,13 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
  * @author stelios
  */
-
- // needs function setUpFromRequest
 public class Seller {
     String iban;
     String name;
@@ -80,5 +79,16 @@ public class Seller {
         System.out.println("IBAN: " + this.iban + ", name: " + this.name + 
                 ", debt: " + this.debt + ", promithia:" + this.promithia +
                 ", profit:" + this.profit);
+    }
+
+
+         public void setUpFromRequest(HttpServletRequest req) {
+        
+        this.setIban(req.getParameter("iban"));
+        this.setName(req.getParameter("name"));
+        this.setDebt(req.getParameter("debt"));
+        this.setPromithia(req.getParameter("promithia"));
+        this.setProfit(req.getParameter("profit"));
+
     }
 }

@@ -121,15 +121,6 @@ public class agoraPerson extends HttpServlet {
             person.setBalance("69");
             ept.updatePerson(person);
 
-//            String query = "INSERT INTO `person_transaction`(`iban_person`, `iban_seller`, `type`, `cost`, `tr_date`) VALUES ('" + pt.getIban_person() +"','" + pt.getIban_seller() +"','" + pt.type +"','" + pt.getCost() +"','" + pt.getTr_date() +"')";
-//            System.out.println(query);
-
-            //Dirty work
-//            connectDB connect = new connectDB();
-//            Connection con = connect.connectionDB();
-//            Statement stm = con.createStatement();
-
-
 
 //            stm.execute(query);
             
