@@ -81,8 +81,7 @@ public class personTransaction extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            //        processRequest(request, response);
-//        System.out.println("We are live!!! " + request.getParameter("transactionType"));
+
             request.getParameter("transactionType");
             PersonTransaction pt = new PersonTransaction();
             pt.setUp(request);

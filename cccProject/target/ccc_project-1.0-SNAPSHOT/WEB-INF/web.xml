@@ -44,6 +44,18 @@
         <servlet-name>deleteSeller</servlet-name>
         <servlet-class>servlets.deleteSeller</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>companyTransaction</servlet-name>
+        <servlet-class>servlets.companyTransaction</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>agoraCompany</servlet-name>
+        <servlet-class>servlets.agoraCompany</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>payPerson</servlet-name>
+        <servlet-class>servlets.payPerson</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>findIBAN</servlet-name>
         <url-pattern>/findIBAN</url-pattern>
@@ -87,6 +99,18 @@
     <servlet-mapping>
         <servlet-name>deleteSeller</servlet-name>
         <url-pattern>/deleteSeller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>companyTransaction</servlet-name>
+        <url-pattern>/companyTransaction</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>agoraCompany</servlet-name>
+        <url-pattern>/agoraCompany</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>payPerson</servlet-name>
+        <url-pattern>/payPerson</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

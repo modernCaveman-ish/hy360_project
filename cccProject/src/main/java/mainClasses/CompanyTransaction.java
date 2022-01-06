@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class CompanyTransaction {
     String id, iban_company, w_id, iban_seller;
-    enum Type { PISTWSH, XREWSH, PLHRWMI, EPISTROFI };
+    enum Type { PISTWSH, XREWSH };
     Type type = Type.PISTWSH; // default
     String cost, tr_date;
 
@@ -94,12 +94,7 @@ public class CompanyTransaction {
             case "XREWSH": 
                 this.type = Type.XREWSH;
                 break;
-            case "PLHRWMI": 
-                this.type = Type.PLHRWMI;
-                break;
-            case "EPISTROFI": 
-                this.type = Type.EPISTROFI;
-                break;    
+              
         }
             
         } catch (SQLException ex) {
@@ -121,13 +116,7 @@ public class CompanyTransaction {
                 break;
             case "XREWSH": 
                 this.type = Type.XREWSH;
-                break;
-            case "PLHRWMI": 
-                this.type = Type.PLHRWMI;
-                break;
-            case "EPISTROFI": 
-                this.type = Type.EPISTROFI;
-                break;    
+                break;   
         }
     }
 }

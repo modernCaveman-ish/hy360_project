@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class PersonTransaction {
     String id, iban_person, iban_seller = "";
-    enum Type { PISTWSH, XREWSH, PLHRWMI, EPISTROFI };
+    enum Type { PISTWSH, XREWSH  };
     String cost = "";
     String tr_date = "";
     public Type type = Type.PISTWSH;
@@ -78,12 +78,6 @@ public class PersonTransaction {
                 break;
             case "XREWSH": 
                 this.type = Type.XREWSH;
-                break;
-            case "PLHRWMI": 
-                this.type = Type.PLHRWMI;
-                break;
-            case "EPISTROFI": 
-                this.type = Type.EPISTROFI;
                 break;    
         }
     }
