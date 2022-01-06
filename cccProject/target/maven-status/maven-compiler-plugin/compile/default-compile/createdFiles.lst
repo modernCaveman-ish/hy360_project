@@ -8,7 +8,6 @@ servlets\newCompany.class
 database\tables\EditPersonTable.class
 mainClasses\PersonTransaction.class
 database\tables\EditCompanyTransactionTable.class
-servlets\agoraCompany.class
 servlets\deleteCompany.class
 servlets\payPerson.class
 database\tables\EditPersonTransactionTable.class
