@@ -1,24 +1,22 @@
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/database/tables/EditPersonTable.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/mainClasses/CompanyTransaction.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/servlets/newPerson.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/servlets/findIBAN.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/database/tables/EditCompanyTable.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/mainClasses/Seller.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/mainClasses/Company.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/servlets/getPerson.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/database/tables/EditCompanyTransactionTable.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/mainClasses/PersonTransaction.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/servlets/returnPerson.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/servlets/deletePerson.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/database/tables/EditPersonTransactionTable.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/servlets/personTransaction.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/database/tables/EditWorkerTable.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/connectDB/connectDB.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/servlets/getAllPersons.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/servlets/Test.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/database/tables/EditSellerTable.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/servlets/newCompany.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/mainClasses/Worker.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/mainClasses/Person.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/servlets/agoraPerson.java
-/home/stelios/Desktop/hy_360 project/hy360_project/cccProject/src/main/java/servlets/deleteCompany.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\servlets\newPerson.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\servlets\Test.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\servlets\agoraPerson.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\servlets\findIBAN.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\database\tables\EditCompanyTable.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\mainClasses\Company.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\servlets\deleteCompany.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\database\tables\EditPersonTransactionTable.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\connectDB\connectDB.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\servlets\newSeller.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\database\tables\EditSellerTable.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\servlets\deletePerson.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\servlets\returnPerson.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\mainClasses\Seller.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\servlets\getPerson.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\servlets\newCompany.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\mainClasses\PersonTransaction.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\database\tables\EditPersonTable.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\mainClasses\Person.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\servlets\deleteSeller.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\servlets\getAllPersons.java
+C:\Users\Dimitra\Documents\NetBeansProjects\hy360_project-main\cccProject\src\main\java\servlets\personTransaction.java

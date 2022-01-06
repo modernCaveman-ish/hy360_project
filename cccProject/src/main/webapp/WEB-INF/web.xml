@@ -29,16 +29,20 @@
         <servlet-class>servlets.returnPerson</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Test</servlet-name>
-        <servlet-class>servlets.Test</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>newCompany</servlet-name>
         <servlet-class>servlets.newCompany</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>deleteCompany</servlet-name>
         <servlet-class>servlets.deleteCompany</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>newSeller</servlet-name>
+        <servlet-class>servlets.newSeller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteSeller</servlet-name>
+        <servlet-class>servlets.deleteSeller</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>findIBAN</servlet-name>
@@ -69,16 +73,20 @@
         <url-pattern>/returnPerson</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Test</servlet-name>
-        <url-pattern>/Test</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>newCompany</servlet-name>
         <url-pattern>/newCompany</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>deleteCompany</servlet-name>
         <url-pattern>/deleteCompany</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>newSeller</servlet-name>
+        <url-pattern>/newSeller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteSeller</servlet-name>
+        <url-pattern>/deleteSeller</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

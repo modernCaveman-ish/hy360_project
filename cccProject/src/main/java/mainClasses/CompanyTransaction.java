@@ -106,7 +106,6 @@ public class CompanyTransaction {
             Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
         }    
     }
-    
     public void setUpFromServletRequest(HttpServletRequest req){
         this.iban_company = req.getParameter("iban_company");
         this.iban_seller = req.getParameter("iban_seller");
