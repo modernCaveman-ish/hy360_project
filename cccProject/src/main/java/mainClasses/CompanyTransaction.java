@@ -52,8 +52,8 @@ public class CompanyTransaction {
         this.iban_seller = iban_seller;
     }
 
-    public Type getType() {
-        return type;
+    public String getType() {
+        return type.toString();
     }
 
     public void setType(Type type) {
