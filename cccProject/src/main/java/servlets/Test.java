@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import database.tables.EditPersonTable;
+import mainClasses.Person;
 /**
  *
  * @author stelios
@@ -72,8 +73,19 @@ public class Test extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         EditPersonTable ept = new EditPersonTable();
+        Person person = new Person();
         
-        ept.deletePerson(request.getParameter("test"));
+        //ept.deletePerson(request.getParameter("test"));
+        
+        // Create Dummy person
+        person.setIban("69");
+        person.setBalance("19");
+        person.setDebt("19");
+        person.setDebt_limit("19");
+        person.setExp_date("2022-01-01");
+        person.setName("blakas");
+        
+        ept.insertPerson(person);
     }
 
     /**
