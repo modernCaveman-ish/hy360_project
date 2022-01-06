@@ -17,7 +17,7 @@ import mainClasses.PersonTransaction;
 
 
 /**
- *
+ *  //NEED TESTING
  * @author stelios
  */
 public class EditPersonTransactionTable {
@@ -43,14 +43,18 @@ public class EditPersonTransactionTable {
         }
     }
     
-    public Seller getPersonTransaction(String iban){
+    public Seller getPersonTransaction(String iban_person, String iban_seller){
         try {
             Seller seller = new Seller();
             
             Connection con = connect.connectionDB();
             Statement stm = con.createStatement();
             
-            String query = "SELECT `iban`, `name`, `debt`, `promithia`, `profit` FROM `seller` WHERE iban = '" + iban + "'";
+            // String query = "SELECT `iban`, `name`, `debt`, `promithia`, `profit` FROM `seller` WHERE iban = '" + iban + "'";
+            // String query = "SELECT `id`, `iban_person`, `iban_seller`, `type`, `cost`, `tr_date` FROM `person_transaction` WHERE iban_person = '" + iban + "' ";
+            String query = "SELECT `id`, `iban_person`, `iban_seller`, `type`, `cost`, `tr_date` FROM `person_transaction` WHERE iban_person = '" 
+            + iban_person + "' AND iban_seller = '" + iban_seller + "'";
+            
             ResultSet rs = stm.executeQuery(query);
             
             while (rs.next()) {
@@ -72,15 +76,19 @@ public class EditPersonTransactionTable {
     }
     
     
-    public void updateSeller(Seller seller) {
+    public void updatePersonTransaction(PersonTransaction pt) {
         try {
             Connection con = connect.connectionDB();
             Statement stm = con.createStatement();
             
-            String query = "UPDATE `seller` SET `iban`='" + seller.getIban() + "',`name`='" + seller.getName() 
-                    + "',`debt`='" + seller.getDebt() + "',`promithia`='" + seller.getPromithia() + "',`profit`='" 
-                    + seller.getProfit() + "' WHERE iban = '" + seller.getIban() + "'";
+            // String query = "UPDATE `person_transaction` SET `iban`='" + pt.get + "',`name`='" + seller.getName() 
+            //         + "',`debt`='" + seller.getDebt() + "',`promithia`='" + seller.getPromithia() + "',`profit`='" 
+            //         + seller.getProfit() + "' WHERE iban = '" + seller.getIban() + "'";
             
+            String query = "UPDATE `person_transaction` SET `iban_person`='" + pt.getIban_person() +"',`iban_seller`='" + pt.getIban_seller() 
+            +"',`type`='" + pt.getType() +"',`cost`='" + pt.getCost() +"',`tr_date`='" + pt.getCost() +"' WHERE iban_person = '" + pt.getIban_person() + "' AND iban_seller ='" + pt.getIban_seller() +"'";
+
+
             System.out.println("Edit PersonTable this is the update query: " + query);
             
             stm.execute(query);
@@ -95,12 +103,13 @@ public class EditPersonTransactionTable {
         }
     }
     
-    public void deleteSeller(String iban) {
+    public void deleteSeller(String iban_person, String iban_seller) {
         try {
             Connection con = connect.connectionDB();
             Statement stm = con.createStatement();
             
-            String query = "DELETE FROM `seller` WHERE iban = '" + iban +"' ";
+            // String query = "DELETE FROM `seller` WHERE iban = '" + iban +"' ";
+            String query = "DELETE FROM `person_transaction` WHERE iban_person = '" + iban_person + "' AND iban_seller ='" + iban_seller +"'";
             
             stm.execute(query);
             stm.close();
