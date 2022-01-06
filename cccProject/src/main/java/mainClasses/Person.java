@@ -57,7 +57,7 @@ public class Person {
     }
 
     public void setExp_date(String date) {
-        this.exp_date = exp_date;
+        this.exp_date = date;
     }
 
     public String getIban() {
@@ -97,6 +97,7 @@ public class Person {
             this.exp_date = rs.getString(4);
             this.debt_limit = rs.getString(5);
             this.debt = rs.getString(6);
+            
         } catch (SQLException ex) {
             Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
         }    

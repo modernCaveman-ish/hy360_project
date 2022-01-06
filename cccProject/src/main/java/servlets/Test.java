@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import database.tables.EditPersonTable;
+import database.tables.EditSellerTable;
 import mainClasses.Person;
+import mainClasses.Seller;
 /**
  *
  * @author stelios
@@ -74,18 +76,24 @@ public class Test extends HttpServlet {
 //        processRequest(request, response);
         EditPersonTable ept = new EditPersonTable();
         Person person = new Person();
+       
+        EditSellerTable est = new EditSellerTable();
+        Seller seller = new Seller();
         
-        //ept.deletePerson(request.getParameter("test"));
+        seller.setIban("10");
+        seller.setDebt("10");
+        seller.setName("deka");
+        seller.setProfit("10");
+        seller.setPromithia("10");
+
+//        est.insertSeller(seller);
+          
+//          seller = est.getSeller("10");
         
-        // Create Dummy person
-        person.setIban("69");
-        person.setBalance("19");
-        person.setDebt("19");
-        person.setDebt_limit("19");
-        person.setExp_date("2022-01-01");
-        person.setName("blakas");
-        
-        ept.insertPerson(person);
+//        seller.setName("MHDEN");
+            est.deleteSeller("10");
+            
+//          seller.print();
     }
 
     /**

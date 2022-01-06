@@ -1,5 +1,15 @@
 servlets/findIBAN.class
 database/tables/EditPersonTable.class
 mainClasses/Person.class
+servlets/deletePerson.class
 servlets/newPerson.class
+mainClasses/PersonTransaction$Type.class
+servlets/personTransaction.class
+servlets/agoraPerson.class
+servlets/Test.class
 connectDB/connectDB.class
+mainClasses/Seller.class
+servlets/getPerson.class
+servlets/getAllPersons.class
+mainClasses/PersonTransaction.class
+servlets/returnPerson.class

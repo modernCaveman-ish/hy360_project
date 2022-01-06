@@ -9,28 +9,77 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mainClasses.Person;
-
+import mainClasses.Seller;
 /**
  *
  * @author stelios
  */
-public class EditPersonTable {
-    
+
+//CRUD
+
+public class EditSellerTable {
     connectDB connect = new connectDB();
     
-    //Create Classes to make everything easier
-    public void updatePerson(Person person) {
+    public void insertSeller(Seller seller) {
         try {
             Connection con = connect.connectionDB();
             Statement stm = con.createStatement();
             
-            String query = "UPDATE `person` SET `iban`='" + person.getIban() + "',`name`='" + person.getName() 
-                    + "',`balance`='" + person.getBalance() + "',`exp_date`='" + person.getExp_date() + "',`debt_limit`='" 
-                    + person.getDebt_limit() + "',`debt`='" + person.getDebt() + "' WHERE iban='" + person.getIban() + "'";
+            String query = "INSERT INTO `seller`(`iban`, `name`, `debt`, `promithia`, `profit`) VALUES "
+                    + "('" + seller.getIban() + "','" + seller.getName() + "','" + seller.getDebt() + "','" + seller.getPromithia() + "','" + seller.getProfit() + "')";
+            System.out.println(query);
+            
+            stm.execute(query);
+            stm.close();
+            con.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(EditPersonTable.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditPersonTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public Seller getSeller(String iban){
+        try {
+            Seller seller = new Seller();
+            
+            Connection con = connect.connectionDB();
+            Statement stm = con.createStatement();
+            
+            String query = "SELECT `iban`, `name`, `debt`, `promithia`, `profit` FROM `seller` WHERE iban = '" + iban + "'";
+            ResultSet rs = stm.executeQuery(query);
+            
+            while (rs.next()) {
+                seller.setUpFromResultSet(rs);
+            }
+            
+            stm.close();
+            con.close();
+            
+            return seller;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(EditPersonTable.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditPersonTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // error
+        return null;
+    }
+    
+    
+    public void updateSeller(Seller seller) {
+        try {
+            Connection con = connect.connectionDB();
+            Statement stm = con.createStatement();
+            
+            String query = "UPDATE `seller` SET `iban`='" + seller.getIban() + "',`name`='" + seller.getName() 
+                    + "',`debt`='" + seller.getDebt() + "',`promithia`='" + seller.getPromithia() + "',`profit`='" 
+                    + seller.getProfit() + "' WHERE iban = '" + seller.getIban() + "'";
             
             System.out.println("Edit PersonTable this is the update query: " + query);
             
@@ -46,14 +95,12 @@ public class EditPersonTable {
         }
     }
     
-    //TODO create delete insert person for the editPersonTable CRUD: CREATE, READ, UPDATE, DELETE
-    
-    public void deletePerson(String iban){
+    public void deleteSeller(String iban) {
         try {
             Connection con = connect.connectionDB();
             Statement stm = con.createStatement();
             
-            String query = "DELETE FROM `person` WHERE iban = '" + iban +"' ";
+            String query = "DELETE FROM `seller` WHERE iban = '" + iban +"' ";
             
             stm.execute(query);
             stm.close();
@@ -64,56 +111,5 @@ public class EditPersonTable {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(EditPersonTable.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    public void insertPerson(Person person) {
-        try {
-            Connection con = connect.connectionDB();
-            Statement stm = con.createStatement();
-            
-            String query = "INSERT INTO `person`(`iban`, `name`, `balance`, `exp_date`, `debt_limit`, `debt`) VALUES "
-                    + "('" + person.getIban() + "','" + person.getName() + "','" + person.getBalance() + "','" + person.getExp_date() + "','" + person.getDebt_limit() + "','" + person.getDebt() + "')";
-            
-            stm.execute(query);
-            stm.close();
-            con.close();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(EditPersonTable.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EditPersonTable.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public Person getPerson(String iban) {
-        try {
-            Person person = new Person();
-            
-            Connection con = connect.connectionDB();
-            Statement stm = con.createStatement();
-            
-            String query = "SELECT `iban`, `name`, `balance`, `exp_date`, `debt_limit`, `debt` FROM `person` WHERE iban = '" + iban + "'";
-            System.out.println(query);
-            
-            ResultSet rs = stm.executeQuery(query);
-            
-            while (rs.next()) {
-                person.setUpFromResultSet(rs);
-            }
-            
-            System.out.println(person.getName());
-            
-            stm.close();
-            con.close();
-            
-            return person;
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(EditPersonTable.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EditPersonTable.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        // error
-        return null;
     }
 }

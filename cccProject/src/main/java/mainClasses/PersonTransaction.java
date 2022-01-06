@@ -7,7 +7,7 @@ package mainClasses;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- *
+ * 
  * @author stelios
  */
 public class PersonTransaction {
