@@ -26,7 +26,7 @@ import mainClasses.Seller;
 
 /**
  *
- * @author stelios
+ * @author Dimitra
  */
 public class returnPerson extends HttpServlet {
 
@@ -47,10 +47,10 @@ public class returnPerson extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet returnPerson</title>");            
+            out.println("<title>Servlet agoraPerson</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet returnPerson at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet agoraPerson at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -82,8 +82,8 @@ public class returnPerson extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-         try {
+   
+        try {
               connectDB connect = new connectDB();
               Connection con = connect.connectionDB();
               Statement stm = con.createStatement();
@@ -115,13 +115,31 @@ public class returnPerson extends HttpServlet {
             }
               
               pt.setUp(request);
-  
-            edpt.insertPersonTransaction(pt);//vale th synallagh ston pinaka me tis synallages
-           // profit tou seller einai profi-cost gia ton seller //  s.getProfit()-= pt.getCost();
-           //balance =balance + cost gia ton idiwth //p.getBalance()+= pt.getCost();
-         
-            //p.setBalance(p.getBalance()+ pt.getCost());
-            //s.setProfit(s.getProfit()+ pt.getCost());
+       //το debt_limit pou kanonika einai credit limit einai to megisto poso pou mporei na ksodeytei
+
+        //metatroph twn string se int
+       // int cr_limit = Integer.parseInt(p.getDebt_limit());
+        int cot =  Integer.parseInt(pt.getCost());// cost
+        int pft = Integer.parseInt(s.getProfit());// to profit tou seller
+        int dbt= Integer.parseInt(s.getProfit());// to debt poso ofeilh tou seller
+        int blc = Integer.parseInt(p.getBalance());//to balance
+            
+           //de kserw an prp na apothikeytei ston pinaka me tis synallages
+           edpt.insertPersonTransaction(pt);//vale th synallagh(Epistrofh)ston pinaka me tis synallages
+   
+           pft=pft+cot;//ayksanete to profit tou seller
+           blc=blc +cot;//ayksanetai to ypoloipo tou pelath
+          // dbt=pft-dbt;//den exw katalavei pws prp na ananewnete to debt
+            //metatroph int se string
+
+           String str1 = Integer.toString(pft);
+         // String str2 = Integer.toString(dbt);
+           String str3 = Integer.toString(blc);
+
+            p.setBalance(str3);
+            //s.setDebt(str2);
+            s.setProfit(str1);
+            
            ept.updatePerson(p);
            est.updateSeller(s);// updates tous pinakes twn seller kai person meta th synallagh
       
