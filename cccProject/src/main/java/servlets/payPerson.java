@@ -47,10 +47,10 @@ public class payPerson extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet payPerson</title>");            
+            out.println("<title>Servlet agoraPerson</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet payPerson at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet agoraPerson at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -82,31 +82,47 @@ public class payPerson extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-            try {
-              connectDB connect = new connectDB();
-              Connection con = connect.connectionDB();
-              Statement stm = con.createStatement();
+        try {
+            connectDB connect = new connectDB();
+            Connection con = connect.connectionDB();
+            Statement stm = con.createStatement();
 
-              EditPersonTable ept = new EditPersonTable();//gia ton pinaka tou idiwth
-              Person p = new Person();//object person
+            EditPersonTable ept = new EditPersonTable();//gia ton pinaka tou idiwth
+            PersonTransaction pt = new PersonTransaction();//synallagh 
+            Person p = new Person();//object person
 
             String person_query = "SELECT `iban`, `name`, `balance`, `exp_date`, `debt_limit`, `debt` FROM `person` WHERE iban = '" + request.getParameter("iban_person") +"'";
-       
-           // Get Person first
+           
+           // Get Person 
             ResultSet rs = stm.executeQuery(person_query);
-           //kane set up to person
+           // set up to person
            // p.setUpPerson(request);
              while(rs.next()) {
                 //set up a person first
                 p.setUpFromResultSet(rs);
                 p.print();
             }
+        int cot =  Integer.parseInt(pt.getCost());// costos synallghs
+        int dbt = Integer.parseInt(p.getDebt());//xreos idiwth
+        int blc = Integer.parseInt(p.getBalance());//to balance
+        if ( dbt>0)//an o idwths exei xreh pragmatopoiei plhrwmh tou posou ofeilhs
+        {  
+            if(blc>=0){ //an exei arketo ypoloipo
+                 // dbt=blc-dbt;//olo to xreos
+                  blc=blc-cot;//poso thelw na eksoflithei
+                  dbt= dbt-cot;
+            }
+            //metatroph int se string
+          String str2 = Integer.toString(dbt);
+          String str3 = Integer.toString(blc);
 
-           //debt =debt - cost o idiwths eksoflei eite olo eite ena meros tou xreous tou 
-          //p.getDebt()+= pt.getCost();    
-           ept.updatePerson(p);// update ston pinaka person meta thn plhrwmh
+           p.setBalance(str3);
+           p.setDebt(str2);
+           ept.updatePerson(p);
 
+        }else{
+             System.out.println("Not enough balance!!Available balance is: " + p.getBalance());
+       }
            stm.close();
            con.close();
          
@@ -115,16 +131,8 @@ public class payPerson extends HttpServlet {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(personTransaction.class.getName()).log(Level.SEVERE, null, ex);
         } 
-    }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    }  
+    
+    
 }
