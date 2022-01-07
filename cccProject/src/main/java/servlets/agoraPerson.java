@@ -93,7 +93,7 @@ public class agoraPerson extends HttpServlet {
               EditPersonTransactionTable edpt = new EditPersonTransactionTable();//gia twn pinaka synallagwn
               Person p = new Person();//object person
               Seller s = new Seller();//object seller
-
+              
             String person_query = "SELECT `iban`, `name`, `balance`, `exp_date`, `debt_limit`, `debt` FROM `person` WHERE iban = '" + request.getParameter("iban_person") +"'";
             String seller_query = "SELECT `iban`, `name`, `debt`, `promithia`, `profit` FROM `seller` WHERE iban = '" + request.getParameter("iban_seller") + "'";
             
@@ -114,20 +114,31 @@ public class agoraPerson extends HttpServlet {
             }
               
               pt.setUp(request);
-  
-        if ( !"0".equals(p.getBalance()))//kanonika prp >0 alla epeidh einai string den to pairnei
+       //το debt_limit pou kanonika einai credit limit einai to megisto poso pou mporei na ksodeytei
+
+        //metatroph twn string se int
+        int cr_limit = Integer.parseInt(p.getDebt_limit());
+        int cot =  Integer.parseInt(pt.getCost());// cost
+        int pft = Integer.parseInt(s.getProfit());// to profit
+        int blc = Integer.parseInt(p.getBalance());//to balance
+        if ( blc>0 && cr_limit>=cot)//an exw arketo ypoloipo kai ayto pou thelw na agorasw den ksepernaei to orio
         {  
-            edpt.insertPersonTransaction(pt);//vale th synallagh ston pinaka me tis synallages
-           // profit tou seller einai profi+cost gia ton seller //  s.getProfit()+= pt.getCost();
-           //balance =balance - cost gia ton idiwth //p.getBalance()+= pt.getCost();
-            
-          
-            //p.setBalance(p.getBalance()+ pt.getCost());
-            //s.setProfit(s.getProfit()+ pt.getCost());
+            edpt.insertPersonTransaction(pt);//vale th synallagh(Agora)ston pinaka me tis synallages
+
+            pft+=cot;//prakseis
+             blc=blc - cot;
+            //metatroph int se string
+
+           String str1 = Integer.toString(pft);
+         //String str2 = Integer.toString(cot);
+           String str3 = Integer.toString(blc);
+
+            p.setBalance(str3);
+            s.setProfit(str1);
            ept.updatePerson(p);
            est.updateSeller(s);// updates tous pinakes twn seller kai person meta th synallagh
         }else{
-             System.out.println("Not enough balance!cannot buy!Available balance is: " + p.getBalance());
+             System.out.println("Not enough balance!!Available balance is: " + p.getBalance());
        }
            stm.close();
            con.close();
