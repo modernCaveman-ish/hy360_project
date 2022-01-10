@@ -16,7 +16,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             iban_person<input type="text" name="iban_person" id="iban_person"><br>
             iban_seller<input type="text" name="iban_seller" id="iban_seller"><br>
             transactionType<select name="transactionType" id="transactionType">
-                <option value="PISTWSH" selected>PISTWSH</option>
                 <option value="XREWSH">XREWSH</option>
             </select><br>
             cost<input type="text" name="cost" id="cost"><br>
@@ -29,6 +28,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <form action="returnPerson" method="post" id="returnPersonForm">
             iban_person<input type="text" name="iban_person" id="iban_person"><br>
             iban_seller<input type="text" name="iban_seller" id="iban_seller"><br>
+            transactionType<select name="transactionType" id="transactionType">
+                <option value="PISTWSH" selected>PISTWSH</option>
+            </select><br> 
             cost<input type="text" name="cost" id="cost"><br>
             tr_date <input type="date" name="tr_date" id="tr_date"><br>
             <input type="submit" value="Submit">
