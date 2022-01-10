@@ -119,8 +119,9 @@ public class agoraPerson extends HttpServlet {
         //metatroph twn string se int
         int cr_limit = Integer.parseInt(p.getDebt_limit());
         int cot =  Integer.parseInt(pt.getCost());// cost
-        int pft = Integer.parseInt(s.getProfit());// to profit
-        int blc = Integer.parseInt(p.getBalance());//to balance
+        Float pft = Float.parseFloat(s.getProfit());// to profit
+        Float blc = Float.parseFloat(p.getBalance());//to balance
+        float promithia = Float.parseFloat(s.getPromithia());
         if ( blc>0 && cr_limit>=cot)//an exw arketo ypoloipo kai ayto pou thelw na agorasw den ksepernaei to orio
         {  
             edpt.insertPersonTransaction(pt);//vale th synallagh(Agora)ston pinaka me tis synallages
@@ -129,12 +130,20 @@ public class agoraPerson extends HttpServlet {
              blc=blc - cot;
             //metatroph int se string
 
-           String str1 = Integer.toString(pft);
+           String str1 = Float.toString(pft);
          //String str2 = Integer.toString(cot);
-           String str3 = Integer.toString(blc);
+           Float new_balance = new Float(blc);
+//           Integer new_profit = Integer.parseInt(s.getProfit());
+           Float new_profit = Float.parseFloat(s.getProfit());
+            //Calculate new profit for Seller
+           new_profit += s.calculateProfit(cot);
 
-            p.setBalance(str3);
-            s.setProfit(str1);
+            p.setBalance(new_balance.toString());
+            //Calculate Profit me promithia
+            s.setProfit(new_profit.toString());
+            //Delete this 
+            System.out.println("new_profit = : " + new_profit);
+            
            ept.updatePerson(p);
            est.updateSeller(s);// updates tous pinakes twn seller kai person meta th synallagh
         }else{

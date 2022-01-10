@@ -89,6 +89,17 @@ public class Seller {
         this.setDebt(req.getParameter("debt"));
         this.setPromithia(req.getParameter("promithia"));
         this.setProfit(req.getParameter("profit"));
-
+    }
+         
+    public float calculateProfit(int cost){
+        float new_profit = 0;
+        Integer int_cost = new Integer(cost);
+        float promithia = Float.parseFloat(this.getPromithia());
+        float float_cost = int_cost.floatValue();
+        
+        new_profit = cost - (float_cost * promithia);
+        System.out.println("calculateProfit: " + new_profit);
+        
+        return new_profit;
     }
 }
