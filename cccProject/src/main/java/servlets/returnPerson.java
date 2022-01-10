@@ -82,7 +82,6 @@ public class returnPerson extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   
         try {
               connectDB connect = new connectDB();
               Connection con = connect.connectionDB();
@@ -94,7 +93,7 @@ public class returnPerson extends HttpServlet {
               EditPersonTransactionTable edpt = new EditPersonTransactionTable();//gia twn pinaka synallagwn
               Person p = new Person();//object person
               Seller s = new Seller();//object seller
-
+              
             String person_query = "SELECT `iban`, `name`, `balance`, `exp_date`, `debt_limit`, `debt` FROM `person` WHERE iban = '" + request.getParameter("iban_person") +"'";
             String seller_query = "SELECT `iban`, `name`, `debt`, `promithia`, `profit` FROM `seller` WHERE iban = '" + request.getParameter("iban_seller") + "'";
             
@@ -115,52 +114,35 @@ public class returnPerson extends HttpServlet {
             }
               
               pt.setUp(request);
-       //το debt_limit pou kanonika einai credit limit einai to megisto poso pou mporei na ksodeytei
 
         //metatroph twn string se int
-       // int cr_limit = Integer.parseInt(p.getDebt_limit());
         int cot =  Integer.parseInt(pt.getCost());// cost
-        int pft = Integer.parseInt(s.getProfit());// to profit tou seller
-        int dbt= Integer.parseInt(s.getProfit());// to debt poso ofeilh tou seller
-        int blc = Integer.parseInt(p.getBalance());//to balance
-            
-           //de kserw an prp na apothikeytei ston pinaka me tis synallages
-           edpt.insertPersonTransaction(pt);//vale th synallagh(Epistrofh)ston pinaka me tis synallages
-   
-           pft=pft+cot;//ayksanete to profit tou seller
-           blc=blc +cot;//ayksanetai to ypoloipo tou pelath
-          // dbt=pft-dbt;//den exw katalavei pws prp na ananewnete to debt
+        Float pft = Float.parseFloat(s.getProfit());// to profit
+        Float blc = Float.parseFloat(p.getBalance());//to balance
+       // float promithia = Float.parseFloat(s.getPromithia());
+         edpt.insertPersonTransaction(pt);//vale th synallagh(EPISTROFH)ston pinaka me tis synallages
+
+            pft=pft-cot;//meiwnete to profit tou seller
+             blc=blc + cot;//ayksanete to balanace tou idiwth
             //metatroph int se string
 
-           String str1 = Integer.toString(pft);
-         // String str2 = Integer.toString(dbt);
-           String str3 = Integer.toString(blc);
+           Float new_balance = new Float(blc);
 
-            p.setBalance(str3);
-            //s.setDebt(str2);
-            s.setProfit(str1);
+            p.setBalance(new_balance.toString());
+            s.setProfit(pft.toString());
             
            ept.updatePerson(p);
            est.updateSeller(s);// updates tous pinakes twn seller kai person meta th synallagh
-      
+
            stm.close();
            con.close();
-         
+       
         } catch (SQLException ex) {
             Logger.getLogger(personTransaction.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(personTransaction.class.getName()).log(Level.SEVERE, null, ex);
         } 
+
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    
 }
