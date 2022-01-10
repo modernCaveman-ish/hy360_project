@@ -6,8 +6,6 @@ package servlets;
 
 import connectDB.connectDB;
 import database.tables.EditPersonTable;
-import database.tables.EditPersonTransactionTable;
-import database.tables.EditSellerTable;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -22,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mainClasses.Person;
 import mainClasses.PersonTransaction;
-import mainClasses.Seller;
 
 /**
  *
@@ -83,56 +80,59 @@ public class payPerson extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            connectDB connect = new connectDB();
-            Connection con = connect.connectionDB();
-            Statement stm = con.createStatement();
+              connectDB connect = new connectDB();
+              Connection con = connect.connectionDB();
+              Statement stm = con.createStatement();
 
-            EditPersonTable ept = new EditPersonTable();//gia ton pinaka tou idiwth
-            PersonTransaction pt = new PersonTransaction();//synallagh 
-            Person p = new Person();//object person
-
+              EditPersonTable ept = new EditPersonTable();//gia ton pinaka tou idiwth
+              PersonTransaction pt = new PersonTransaction();//synallagh metaksi emporou kai idiwth
+              Person p = new Person();//object person
+            
             String person_query = "SELECT `iban`, `name`, `balance`, `exp_date`, `debt_limit`, `debt` FROM `person` WHERE iban = '" + request.getParameter("iban_person") +"'";
-           
+                 
            // Get Person 
             ResultSet rs = stm.executeQuery(person_query);
-           // set up to person
-           // p.setUpPerson(request);
+           //kane set up to person
+
              while(rs.next()) {
                 //set up a person first
                 p.setUpFromResultSet(rs);
                 p.print();
             }
-        int cot =  Integer.parseInt(pt.getCost());// costos synallghs
-        int dbt = Integer.parseInt(p.getDebt());//xreos idiwth
-        int blc = Integer.parseInt(p.getBalance());//to balance
+
+              //pt.setUp(request);
+
+        //metatroph twn string se float
+
+        Float cot =  Float.parseFloat(pt.getCost());// cost pou thelw na ksexrewthei
+        Float blc = Float.parseFloat(p.getBalance());//to balance
+        Float dbt = Float.parseFloat(p.getDebt());//xreos idiwth
+
+        //edpt.insertPersonTransaction(pt);//oxiii den apothikeyoume plhrwmes
+
         if ( dbt>0)//an o idwths exei xreh pragmatopoiei plhrwmh tou posou ofeilhs
         {  
             if(blc>=0){ //an exei arketo ypoloipo
-                 // dbt=blc-dbt;//olo to xreos
-                  blc=blc-cot;//poso thelw na eksoflithei
+                  blc=blc-cot;//poso thelw na eksoflithei afaireitai ap to balance 
                   dbt= dbt-cot;
             }
-            //metatroph int se string
-          String str2 = Integer.toString(dbt);
-          String str3 = Integer.toString(blc);
+        }
+           Float new_balance = blc;//neo balance idiwth
+           Float new_debt = dbt;//neo balance idiwth
 
-           p.setBalance(str3);
-           p.setDebt(str2);
+           p.setBalance(new_balance.toString());
+           p.setDebt(new_debt.toString());
+                 
            ept.updatePerson(p);
-
-        }else{
-             System.out.println("Not enough balance!!Available balance is: " + p.getBalance());
-       }
+       
            stm.close();
            con.close();
-         
+       
         } catch (SQLException ex) {
             Logger.getLogger(personTransaction.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(personTransaction.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-
-    }  
-    
-    
+       } 
+    }    
 }
+    
