@@ -30,6 +30,14 @@ public class newCompany extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        EditCompanyTable ect = new EditCompanyTable();
+        Company company = new Company();
+        
+        company.setUpFromRequest(request);
+        ect.insertCompany(company);
+        
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -39,7 +47,7 @@ public class newCompany extends HttpServlet {
             out.println("<title>Servlet newCompany</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet newCompany at " + request.getContextPath() + "</h1>");
+            out.println("<h3>New Company was added to the CompanyTable<br>Info: " + company.toString() + "</h3>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,12 +79,7 @@ public class newCompany extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        EditCompanyTable ect = new EditCompanyTable();
-        Company company = new Company();
-        
-        company.setUpFromRequest(request);
-        ect.insertCompany(company);
-        
+        processRequest(request, response);
     }
 
     /**

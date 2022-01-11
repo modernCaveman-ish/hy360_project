@@ -94,5 +94,12 @@ public class Company {
             Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
         }    
     }
-
+    
+    public String toString() {
+        String info = "IBAN: " + this.getIban() + ", Debt: " + this.getDebt() 
+                + ", Debt_limit: " + this.getDebt_limit() + ", Balance: " 
+                + this.getBalance() + ", Exp_date: " + this.getExp_date();
+        
+        return info;
+    }
 }
