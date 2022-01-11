@@ -38,18 +38,51 @@ public class payPerson extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet agoraPerson</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet agoraPerson at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        
+        String iban_person = request.getParameter("iban_person");
+        String cost        = request.getParameter("cost");
+        String tr_date     = request.getParameter("tr_date");
+        boolean paid = false; // Default
+        
+        EditPersonTable ept = new EditPersonTable();
+        Person person = ept.getPerson(iban_person);
+        
+        if( cost == "" ){
+            System.out.println("Cost is blank!!");
+            paid = person.payDebt();
+        } else {
+            System.out.println("Cost is " + cost);
+            paid = person.payDebt(Integer.parseInt(cost));
+        }
+        
+        if(paid == true) {
+            response.setContentType("text/html;charset=UTF-8");
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet agoraPerson</title>");            
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h3>Person.payDebt() Success!!!<br>Person info: " + person.toString() + "</h3>");
+                out.println("</body>");
+                out.println("</html>");
+            }
+        } else if( paid == false ){
+            response.setContentType("text/html;charset=UTF-8");
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet agoraPerson</title>");            
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h3>Person.payDebt() Unsuccessful, invalid values...<br>Balance: " + person.getBalance() + "<br>Debt: " + person.getDebt() + "<br>Cost: " + cost + "</h3>");
+                out.println("</body>");
+                out.println("</html>");
+            }
         }
     }
 
@@ -79,60 +112,65 @@ public class payPerson extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-              connectDB connect = new connectDB();
-              Connection con = connect.connectionDB();
-              Statement stm = con.createStatement();
+            processRequest(request, response);
+//        try {
+//              connectDB connect = new connectDB();
+//              Connection con = connect.connectionDB();
+//              Statement stm = con.createStatement();
+//
+//              EditPersonTable ept = new EditPersonTable();//gia ton pinaka tou idiwth
+//              PersonTransaction pt = new PersonTransaction();//synallagh metaksi emporou kai idiwth
+//              Person p = new Person();//object person
+//            
+//            String person_query = "SELECT `iban`, `name`, `balance`, `exp_date`, `debt_limit`, `debt` FROM `person` WHERE iban = '" + request.getParameter("iban_person") +"'";
+//                 
+//           // Get Person 
+//            ResultSet rs = stm.executeQuery(person_query);
+//           //kane set up to person
+//
+//             while(rs.next()) {
+//                //set up a person first
+//                p.setUpFromResultSet(rs);
+//                p.print();
+//            }
+//
+//              //pt.setUp(request);
+//
+//        //metatroph twn string se float
+//
+//        Float cot =  Float.parseFloat(pt.getCost());// cost pou thelw na ksexrewthei
+//        Float blc = Float.parseFloat(p.getBalance());//to balance
+//        Float dbt = Float.parseFloat(p.getDebt());//xreos idiwth
+//
+//        //edpt.insertPersonTransaction(pt);//oxiii den apothikeyoume plhrwmes
+//
+//        if ( dbt>0)//an o idwths exei xreh pragmatopoiei plhrwmh tou posou ofeilhs
+//        {  
+//            if(blc>=0){ //an exei arketo ypoloipo
+//                  blc=blc-cot;//poso thelw na eksoflithei afaireitai ap to balance 
+//                  dbt= dbt-cot;
+//            }
+//        }
+//           Float new_balance = blc;//neo balance idiwth
+//           Float new_debt = dbt;//neo balance idiwth
+//
+//           p.setBalance(new_balance.toString());
+//           p.setDebt(new_debt.toString());
+//                 
+//           ept.updatePerson(p);
+//       
+//           stm.close();
+//           con.close();
+//       
+//        } catch (SQLException ex) {
+//            Logger.getLogger(personTransaction.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(personTransaction.class.getName()).log(Level.SEVERE, null, ex);
+//       }
 
-              EditPersonTable ept = new EditPersonTable();//gia ton pinaka tou idiwth
-              PersonTransaction pt = new PersonTransaction();//synallagh metaksi emporou kai idiwth
-              Person p = new Person();//object person
-            
-            String person_query = "SELECT `iban`, `name`, `balance`, `exp_date`, `debt_limit`, `debt` FROM `person` WHERE iban = '" + request.getParameter("iban_person") +"'";
-                 
-           // Get Person 
-            ResultSet rs = stm.executeQuery(person_query);
-           //kane set up to person
+        
 
-             while(rs.next()) {
-                //set up a person first
-                p.setUpFromResultSet(rs);
-                p.print();
-            }
 
-              //pt.setUp(request);
-
-        //metatroph twn string se float
-
-        Float cot =  Float.parseFloat(pt.getCost());// cost pou thelw na ksexrewthei
-        Float blc = Float.parseFloat(p.getBalance());//to balance
-        Float dbt = Float.parseFloat(p.getDebt());//xreos idiwth
-
-        //edpt.insertPersonTransaction(pt);//oxiii den apothikeyoume plhrwmes
-
-        if ( dbt>0)//an o idwths exei xreh pragmatopoiei plhrwmh tou posou ofeilhs
-        {  
-            if(blc>=0){ //an exei arketo ypoloipo
-                  blc=blc-cot;//poso thelw na eksoflithei afaireitai ap to balance 
-                  dbt= dbt-cot;
-            }
-        }
-           Float new_balance = blc;//neo balance idiwth
-           Float new_debt = dbt;//neo balance idiwth
-
-           p.setBalance(new_balance.toString());
-           p.setDebt(new_debt.toString());
-                 
-           ept.updatePerson(p);
-       
-           stm.close();
-           con.close();
-       
-        } catch (SQLException ex) {
-            Logger.getLogger(personTransaction.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(personTransaction.class.getName()).log(Level.SEVERE, null, ex);
-       } 
     }    
 }
     

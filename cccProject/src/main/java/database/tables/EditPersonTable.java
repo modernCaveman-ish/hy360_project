@@ -93,15 +93,12 @@ public class EditPersonTable {
             Statement stm = con.createStatement();
             
             String query = "SELECT `iban`, `name`, `balance`, `exp_date`, `debt_limit`, `debt` FROM `person` WHERE iban = '" + iban + "'";
-            System.out.println(query);
             
             ResultSet rs = stm.executeQuery(query);
             
             while (rs.next()) {
                 person.setUpFromResultSet(rs);
             }
-            
-            System.out.println(person.getName());
             
             stm.close();
             con.close();

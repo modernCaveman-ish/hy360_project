@@ -4,6 +4,7 @@
  */
 package mainClasses;
 
+import database.tables.EditPersonTable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -109,4 +110,70 @@ public class Person {
                 + this.debt_limit + ", debt: " + this.debt);
     }
     
+    public String toString() {
+        String info = "IBAN: " + this.iban + ", name: " + this.name + ", balance: " 
+                + this.balance + ", exp_date: " + this.exp_date + ", debt_limit: " 
+                + this.debt_limit + ", debt: " + this.debt;
+        
+        return info;
+    }
+    
+    public boolean payDebt() {
+        Integer balance = Integer.parseInt(this.getBalance());
+        Integer debt    = Integer.parseInt(this.getDebt());
+        EditPersonTable ept = new EditPersonTable();
+        
+//        System.out.println("We are in Person.payDebt()");
+        
+        if( balance == 0 ){
+            System.out.println("Error person.payDebt(), balance is 0");
+            return false;
+        } else if ( balance > debt ) {
+            balance = balance - debt;
+            debt = 0;
+            this.setBalance(balance.toString());
+            this.setDebt(debt.toString());
+            ept.updatePerson(this);
+            return true;
+        } else if( debt > balance ){
+            debt = debt - balance;
+            balance = 0;
+            this.setBalance(balance.toString());
+            this.setDebt(debt.toString());
+            ept.updatePerson(this);
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean payDebt(int cost) {
+        Integer balance = Integer.parseInt(this.getBalance());
+        Integer debt    = Integer.parseInt(this.getDebt());
+        EditPersonTable ept = new EditPersonTable();
+        
+        balance = balance - cost;
+        debt = debt - cost;
+        
+        if( balance < 0 ) {
+            System.out.println("Error at person.payDebt(), not enough balance for this action, abort...");
+            return false;
+        } else if ( debt < 0 ) {
+            System.out.println("Error at Person.payDebt(), invalid values debt will get a negative value, abort...");
+            return false;
+        } else if( debt == 0 ) {
+            this.setBalance(balance.toString());
+            this.setDebt(debt.toString());
+            System.out.println("Success Person.payDebt(), debt got paid!!");
+            ept.updatePerson(this);
+            return true;
+        } else if( debt > 0 ) {
+            this.setBalance(balance.toString());
+            this.setDebt(debt.toString());
+            System.out.println("Success Person.payDebt(), part of debt got paid!! Remaining debt now is " + this.getDebt());
+            ept.updatePerson(this);
+            return true;
+        }
+        
+        return false;
+    }
 }
