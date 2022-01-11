@@ -28,7 +28,7 @@ public class EditWorkerTable {
         try {
             Connection con = connect.connectionDB();
             Statement stm = con.createStatement();
-
+            
             String query = "INSERT INTO `worker`(`iban_company`, `id`, `name`) VALUES ('" + worker.getIban_company() + "','" + worker.getId() + "','" + worker.getName() + "')";
             System.out.println(query);
             
@@ -52,7 +52,18 @@ public class EditWorkerTable {
             
             // String query = "SELECT `iban`, `name`, `debt`, `promithia`, `profit` FROM `seller` WHERE iban = '" + iban + "'";
             String query = "SELECT `iban_company`, `id`, `name` FROM `worker` WHERE iban_company = '" + iban_company + "' AND id = '" + id + "'";
+            System.out.println(query);
+            
             ResultSet rs = stm.executeQuery(query);
+            
+//            if( rs.next() == false ){
+//                System.out.println("Error, getWorker fromTable, worker was not found!!");
+//                stm.close();
+//                con.close();
+//                return null;
+//            }
+            //may
+//            rs.first();
             
             while (rs.next()) {
                 worker.setUpFromResultSet(rs);

@@ -16,12 +16,24 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class CompanyTransaction {
     String id, iban_company, w_id, iban_seller;
+
     enum Type { PISTWSH, XREWSH };
     Type type = Type.PISTWSH; // default
     String cost, tr_date;
 
+
     public String getId() {
         return id;
+    }
+    
+    // Constructor
+    public void CompanyTransaction(String iban_company, String w_id, String iban_seller, String type, String cost, String tr_date) {
+        this.iban_company = iban_company;
+        this.w_id = w_id;
+        this.iban_seller = iban_seller;
+        this.cost = cost;
+        this.tr_date = tr_date;
+        this.setType(type);
     }
 
     public void setId(String id) {
@@ -59,7 +71,16 @@ public class CompanyTransaction {
     public void setType(Type type) {
         this.type = type;
     }
-
+    
+    private void setType(String type) {
+        if( type == "PISTWSH" ){
+            this.type = Type.PISTWSH;
+        }
+        else if( type == "XREWSH" ){
+            this.type = Type.XREWSH;
+        }
+    }
+    
     public String getCost() {
         return cost;
     }

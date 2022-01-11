@@ -28,9 +28,9 @@ public class EditCompanyTransactionTable {
             
 //            String query = "INSERT INTO `seller`(`iban`, `name`, `debt`, `promithia`, `profit`) VALUES "
 //                    + "('" + seller.getIban() + "','" + seller.getName() + "','" + seller.getDebt() + "','" + seller.getPromithia() + "','" + seller.getProfit() + "')";
+
             
-            String query = "INSERT INTO `company_transaction`(`iban_company`, `w_id`, `iban_seller`, `type`, `cost`, `tr_date`) VALUES','" + ct.getIban_company() + "','" 
-                    + ct.getW_id() + "','" + ct.getIban_seller() + "','" + ct.getType() + "','" + ct.getTr_date() + "')";
+            String query = "INSERT INTO `company_transaction`( `iban_company`, `w_id`, `iban_seller`, `type`, `cost`, `tr_date`) VALUES ('" + ct.getIban_company() + "','" + ct.getW_id() + "','" + ct.getIban_seller() + "','" + ct.getType() + "','" + ct.getCost() +"','" + ct.getTr_date() + "')";
             System.out.println(query);
             
             stm.execute(query);

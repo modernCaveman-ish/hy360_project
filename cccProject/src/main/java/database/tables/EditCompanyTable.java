@@ -53,7 +53,17 @@ public class EditCompanyTable {
             
             // String query = "SELECT `iban`, `name`, `debt`, `promithia`, `profit` FROM `seller` WHERE iban = '" + iban + "'";
             String query = "SELECT `iban`, `name`, `debt`, `debt_limit`, `balance`, `exp_date` FROM `company` WHERE iban = '" + iban + "'";
+            System.out.println(query);
             ResultSet rs = stm.executeQuery(query);
+            
+//            if( rs.next() == false ){
+//                stm.close();
+//                con.close();
+//                System.out.println("Couldn't find Company with IBAN: " + iban);
+//                return null;
+//            }
+            
+//            rs.first();
             
             while (rs.next()) {
                 company.setUpFromResultSet(rs);

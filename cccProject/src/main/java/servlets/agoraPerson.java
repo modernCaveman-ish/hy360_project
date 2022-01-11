@@ -136,7 +136,7 @@ public class agoraPerson extends HttpServlet {
 //           Integer new_profit = Integer.parseInt(s.getProfit());
            Float new_profit = Float.parseFloat(s.getProfit());
             //Calculate new profit for Seller
-           new_profit += s.calculateProfit(cot);
+           new_profit += s.calculateTransactionProfit(cot);
 
             p.setBalance(new_balance.toString());
             //Calculate Profit me promithia

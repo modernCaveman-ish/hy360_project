@@ -1,5 +1,6 @@
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/database/tables/EditWorkerTable.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/mainClasses/Person.java
+/home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/getCompany.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/companyTransaction.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/mainClasses/CompanyTransaction.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/newCompany.java
@@ -12,6 +13,7 @@
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/mainClasses/PersonTransaction.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/getPerson.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/database/tables/EditPersonTransactionTable.java
+/home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/insertWorker.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/payPerson.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/agoraCompany.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/findIBAN.java
@@ -23,6 +25,7 @@
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/mainClasses/Seller.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/newPerson.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/Test.java
+/home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/getWorker.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/database/tables/EditSellerTable.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/returnPerson.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/deleteSeller.java

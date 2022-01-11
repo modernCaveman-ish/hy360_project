@@ -13,6 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 
+import database.tables.EditCompanyTable;
+
 
 public class Company {
     
@@ -101,5 +103,26 @@ public class Company {
                 + this.getBalance() + ", Exp_date: " + this.getExp_date();
         
         return info;
+    }
+
+    // Function gia agora
+    public boolean agora(int cost){
+        boolean done = false; //default
+        Integer balance = Integer.parseInt(this.getBalance());
+        EditCompanyTable ect = new EditCompanyTable();
+
+        if( balance < cost ){
+            System.out.println("Error Company.agora(), not enough balance for this action..");
+            return false;
+        } else {
+            balance = balance - cost;
+            this.setBalance(balance.toString());
+            ect.updateCompany(this);
+            return true;
+        }
+    }
+    
+    public void print(){
+        System.out.println(this.toString());
     }
 }

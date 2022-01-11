@@ -72,4 +72,9 @@ public class Worker {
     public void print(){
         System.out.println("iban_company: " + this.iban_company + ", id: " + this.id + ", name: " + this.name);
     }
+    
+    public String toString(){
+        String info = "iban_company: " + this.iban_company + ", id: " + this.id + ", name: " + this.name;
+        return info;
+    }
 }

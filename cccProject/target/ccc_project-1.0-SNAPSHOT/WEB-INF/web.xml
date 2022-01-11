@@ -52,6 +52,22 @@
         <servlet-name>payPerson</servlet-name>
         <servlet-class>servlets.payPerson</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>insertWorker</servlet-name>
+        <servlet-class>servlets.insertWorker</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>agoraCompany</servlet-name>
+        <servlet-class>servlets.agoraCompany</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getWorker</servlet-name>
+        <servlet-class>servlets.getWorker</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getCompany</servlet-name>
+        <servlet-class>servlets.getCompany</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>findIBAN</servlet-name>
         <url-pattern>/findIBAN</url-pattern>
@@ -103,6 +119,22 @@
     <servlet-mapping>
         <servlet-name>payPerson</servlet-name>
         <url-pattern>/payPerson</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>insertWorker</servlet-name>
+        <url-pattern>/insertWorker</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>agoraCompany</servlet-name>
+        <url-pattern>/agoraCompany</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getWorker</servlet-name>
+        <url-pattern>/getWorker</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getCompany</servlet-name>
+        <url-pattern>/getCompany</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

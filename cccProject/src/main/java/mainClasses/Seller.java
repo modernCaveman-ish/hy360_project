@@ -10,6 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 
+import database.tables.EditSellerTable;
+
 /**
  *
  * @author stelios
@@ -91,7 +93,7 @@ public class Seller {
         this.setProfit(req.getParameter("profit"));
     }
          
-    public float calculateProfit(int cost){
+    public float calculateTransactionProfit(int cost){
         float new_profit = 0;
         Integer int_cost = new Integer(cost);
         float promithia = Float.parseFloat(this.getPromithia());
@@ -101,5 +103,17 @@ public class Seller {
         System.out.println("calculateProfit: " + new_profit);
         
         return new_profit;
+    }
+
+    public void agora(int cost) {
+        EditSellerTable est = new EditSellerTable();
+
+        float transactionProfit = this.calculateTransactionProfit(cost);
+        Float profit = Float.parseFloat(this.getProfit());
+        Float new_profit = profit + transactionProfit;
+        
+        this.setProfit(new_profit.toString());
+
+        est.updateSeller(this);
     }
 }

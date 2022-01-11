@@ -48,6 +48,13 @@ public class EditSellerTable {
             String query = "SELECT `iban`, `name`, `debt`, `promithia`, `profit` FROM `seller` WHERE iban = '" + iban + "'";
             ResultSet rs = stm.executeQuery(query);
             
+//            if( rs.next() == false ){
+//                System.out.println("Error, could not find seller with iban: " + iban);
+//                stm.close();
+//                con.close();
+//                return null;
+//            }
+            
             while (rs.next()) {
                 seller.setUpFromResultSet(rs);
             }
