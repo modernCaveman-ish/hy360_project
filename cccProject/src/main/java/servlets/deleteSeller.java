@@ -36,7 +36,7 @@ public class deleteSeller extends HttpServlet {
         
         seller = est.getSeller(request.getParameter("iban"));
         
-        if(seller.getDebt().equals("0")){   
+        if(seller.getDebt().equals("0.0")){   
              // Success
              est.deleteSeller(seller.getIban());
              
