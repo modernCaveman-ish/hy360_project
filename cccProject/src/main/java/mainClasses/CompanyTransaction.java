@@ -140,4 +140,12 @@ public class CompanyTransaction {
                 break;   
         }
     }
+    
+    public String getString() {
+        String info = "IBAN company : " + this.getIban_company() + ", Worker ID: " + this.w_id
+                + ", IBAN SELLER: " + this.iban_seller + ", Cost: " 
+                + this.getCost() + ", Tr_date: " + this.getTr_date();
+
+        return info;
+    }
 }

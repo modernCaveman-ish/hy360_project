@@ -31,7 +31,7 @@ import mainClasses.Worker;
  * @author Dimitra
  */
 public class agoraCompany extends HttpServlet {
-
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,7 +42,7 @@ public class agoraCompany extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         
         String iban_company = request.getParameter("iban_company");
         String iban_seller  = request.getParameter("iban_seller");
@@ -67,7 +67,7 @@ public class agoraCompany extends HttpServlet {
         
         
         // Check if null
-        if( company == null || seller == null || worker == null ){
+        if( company.getIban() == null || seller.getIban() == null || worker.getIban_company() == null ){
             //Error Page
             response.setContentType("text/html;charset=UTF-8");
             try (PrintWriter out = response.getWriter()) {
@@ -83,15 +83,19 @@ public class agoraCompany extends HttpServlet {
                 out.println("</body>");
                 out.println("</html>");
             }
+            return;
         }
         
         worker.print();
         company.print();
         
         System.out.println("iban_worker_company: " + worker.getIban_company() + ", " + iban_company + ", iban_company: " + company.getIban() + ", " + worker_id);
+        Integer w_iban = Integer.parseInt(worker.getIban_company());
+        Integer company_iban = Integer.parseInt(company.getIban());
+        
         
         //Check if worker is not from that company
-        if( worker.getIban_company() == company.getIban() ){
+        if( !worker.getIban_company().equals(company.getIban()) ){
             response.setContentType("text/html;charset=UTF-8");
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
@@ -106,13 +110,14 @@ public class agoraCompany extends HttpServlet {
                 out.println("</body>");
                 out.println("</html>");
             }
+            return;
         }
         
 
         //Actions for agora 
         success = company.agora(Integer.parseInt(cost));
         seller.print();
-        seller.agora(Integer.parseInt(cost));
+//        seller.agora(Integer.parseInt(cost));
         
         //SetUp CompanyTransaction
         if( success ){
@@ -130,7 +135,8 @@ public class agoraCompany extends HttpServlet {
             out.println("<title>Servlet agoraCompany</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet agoraCompany at " + "DONE" + "</h1>");
+            out.println("<h1>Servlet agoraCompany Successful <br>Transaction Info:" + 
+                   comp_trans.getString() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -152,6 +158,7 @@ public class agoraCompany extends HttpServlet {
                 out.println("</html>");
             }
         }
+        return;
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -165,7 +172,13 @@ public class agoraCompany extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(agoraCompany.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(agoraCompany.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -179,7 +192,8 @@ public class agoraCompany extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
 //      try {
 //              connectDB connect = new connectDB();
 //              Connection con = connect.connectionDB();
@@ -255,6 +269,11 @@ public class agoraCompany extends HttpServlet {
 //            Logger.getLogger(personTransaction.class.getName()).log(Level.SEVERE, null, ex);
 //        } 
 // 
+        } catch (SQLException ex) {
+            Logger.getLogger(agoraCompany.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(agoraCompany.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -97,7 +97,7 @@ public class Company {
         }    
     }
     
-    public String toString() {
+    public String getString() {
         String info = "IBAN: " + this.getIban() + ", Debt: " + this.getDebt() 
                 + ", Debt_limit: " + this.getDebt_limit() + ", Balance: " 
                 + this.getBalance() + ", Exp_date: " + this.getExp_date();
