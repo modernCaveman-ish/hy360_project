@@ -3,6 +3,7 @@ database/tables/EditSellerTable.class
 database/tables/EditWorkerTable.class
 servlets/deletePerson.class
 servlets/newPerson.class
+servlets/returnCompany2.class
 database/tables/EditPersonTransactionTable.class
 servlets/newCompany.class
 servlets/agoraPerson.class
@@ -27,6 +28,7 @@ mainClasses/Worker.class
 mainClasses/CompanyTransaction.class
 servlets/Test.class
 servlets/deleteCompany.class
+servlets/payCompany.class
 connectDB/connectDB.class
 servlets/payPerson.class
 mainClasses/Company.class

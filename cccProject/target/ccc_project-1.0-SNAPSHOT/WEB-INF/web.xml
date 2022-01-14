@@ -68,6 +68,18 @@
         <servlet-name>getCompany</servlet-name>
         <servlet-class>servlets.getCompany</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>payCompany</servlet-name>
+        <servlet-class>servlets.payCompany</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>returnCompany</servlet-name>
+        <servlet-class>mainClasses.returnCompany</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>returnCompany2</servlet-name>
+        <servlet-class>servlets.returnCompany2</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>findIBAN</servlet-name>
         <url-pattern>/findIBAN</url-pattern>
@@ -135,6 +147,18 @@
     <servlet-mapping>
         <servlet-name>getCompany</servlet-name>
         <url-pattern>/getCompany</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>payCompany</servlet-name>
+        <url-pattern>/payCompany</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>returnCompany</servlet-name>
+        <url-pattern>/returnCompany</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>returnCompany2</servlet-name>
+        <url-pattern>/returnCompany2</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

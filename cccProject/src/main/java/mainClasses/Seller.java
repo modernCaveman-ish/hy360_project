@@ -116,4 +116,16 @@ public class Seller {
 
         est.updateSeller(this);
     }
+    
+    public void epistrofi(int cost) {
+        EditSellerTable est = new EditSellerTable();
+
+        //float transactionProfit = this.calculateTransactionProfit(cost);
+        Float profit = Float.parseFloat(this.getProfit());
+        Float new_profit = profit - cost;
+
+        this.setProfit(new_profit.toString());
+
+        est.updateSeller(this);
+    }
 }

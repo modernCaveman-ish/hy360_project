@@ -44,24 +44,25 @@ public class EditCompanyTransactionTable {
         }
     }
     
-    public Seller getSeller(String iban){
+    public CompanyTransaction getCompanyTransaction(String iban_company, String w_id, String iban_seller, String trans_type, String cost, String tr_date){
         try {
-            Seller seller = new Seller();
+            CompanyTransaction comp_trans = new CompanyTransaction();
             
             Connection con = connect.connectionDB();
             Statement stm = con.createStatement();
             
-            String query = "SELECT `id`, `iban_company`, `w_id`, `iban_seller`, `type`, `cost`, `tr_date` FROM `company_transaction` WHERE 1";
+            String query = "SELECT `id`, `iban_company`, `w_id`, `iban_seller`, `type`, `cost`, `tr_date` FROM `company_transaction` WHERE iban_company='" + iban_company 
+                    + "', w_id='" + w_id + "', type='" + trans_type + "', cost='" + cost + "', tr_date='" + tr_date + "'";
             ResultSet rs = stm.executeQuery(query);
             
             while (rs.next()) {
-                seller.setUpFromResultSet(rs);
+                comp_trans.setUpFromResultSet(rs);
             }
             
             stm.close();
             con.close();
             
-            return seller;
+            return comp_trans;
             
         } catch (SQLException ex) {
             Logger.getLogger(EditPersonTable.class.getName()).log(Level.SEVERE, null, ex);

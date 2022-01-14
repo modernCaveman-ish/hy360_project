@@ -148,4 +148,9 @@ public class CompanyTransaction {
 
         return info;
     }
+    
+    public void print(){
+        String info = this.getString();
+        System.out.println(info);
+    }
 }

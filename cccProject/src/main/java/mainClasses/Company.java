@@ -125,4 +125,74 @@ public class Company {
     public void print(){
         System.out.println(this.toString());
     }
+    
+      public boolean epistrofi(int cost){
+        boolean done = false; //default
+        Integer balance = Integer.parseInt(this.getBalance());
+        EditCompanyTable ect = new EditCompanyTable();
+
+            balance = balance + cost;
+            this.setBalance(balance.toString());
+            ect.updateCompany(this);
+            return true;    
+    }
+    
+    public boolean payDebt() {
+
+        Integer balance = Integer.parseInt(this.getBalance());
+        Integer debt    = Integer.parseInt(this.getDebt());
+        EditCompanyTable ect = new EditCompanyTable();
+             
+        if( balance == 0 ){
+            System.out.println("Error company.payDebt(), balance is 0");
+            return false;
+        } else if ( balance > debt ) {
+            balance = balance - debt;
+            debt = 0;
+            this.setBalance(balance.toString());
+            this.setDebt(debt.toString());
+            ect.updateCompany(this);
+            return true;
+        } else if( debt > balance ){
+            debt = debt - balance;
+            balance = 0;
+            this.setBalance(balance.toString());
+            this.setDebt(debt.toString());
+            ect.updateCompany(this);
+            return true;
+        }
+        return false;
+    }
+ public boolean payDebt(int cost) {
+
+        Integer balance = Integer.parseInt(this.getBalance());
+        Integer debt    = Integer.parseInt(this.getDebt());
+        EditCompanyTable ect = new EditCompanyTable();
+        
+        balance = balance - cost;
+        debt = debt - cost;
+        
+        if( balance < 0 ) {
+            System.out.println("Error at company.payDebt(), not enough balance for this action, abort...");
+            return false;
+        } else if ( debt < 0 ) {
+            System.out.println("Error at Company.payDebt(), invalid values debt will get a negative value, abort...");
+            return false;
+        } else if( debt == 0 ) {
+            this.setBalance(balance.toString());
+            this.setDebt(debt.toString());
+            System.out.println("Success Company.payDebt(), debt got paid!!");
+            ect.updateCompany(this);
+            return true;
+        } else if( debt > 0 ) {
+            this.setBalance(balance.toString());
+            this.setDebt(debt.toString());
+            System.out.println("Success Company.payDebt(), part of debt got paid!! Remaining debt now is " + this.getDebt());
+            ect.updateCompany(this);
+            return true;
+        }
+        
+        return false;
+    }
+    
 }
