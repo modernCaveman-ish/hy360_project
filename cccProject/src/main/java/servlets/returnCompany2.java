@@ -4,12 +4,19 @@
  */
 package servlets;
 
+import connectDB.connectDB;
 import database.tables.EditCompanyTable;
 import database.tables.EditCompanyTransactionTable;
 import database.tables.EditSellerTable;
 import database.tables.EditWorkerTable;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +31,7 @@ import mainClasses.Worker;
  * @author Dimitra
  */
 public class returnCompany2 extends HttpServlet {
-
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,8 +42,8 @@ public class returnCompany2 extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
+        
         String iban_company = request.getParameter("iban_company");
         String iban_seller  = request.getParameter("iban_seller");
         String cost         = request.getParameter("cost");
@@ -54,11 +61,11 @@ public class returnCompany2 extends HttpServlet {
         Seller  seller  = est.getSeller(iban_seller);
         CompanyTransaction comp_trans = new CompanyTransaction();
         Worker worker   = ewt.getWorker(worker_id, iban_company);
-        CompanyTransaction search_trans = new CompanyTransaction();
         
         System.out.println("IBAN_seller: "  + iban_seller);
         System.out.println("HERE");
-      
+        
+        
         // Check if null
         if( company.getIban() == null || seller.getIban() == null || worker.getIban_company() == null ){
             //Error Page
@@ -71,22 +78,22 @@ public class returnCompany2 extends HttpServlet {
                 out.println("<title>Servlet returnCompany</title>");            
                 out.println("</head>");
                 out.println("<body>");
-                out.println("<h1>Error in Epistrofh, invalid values entered<br>iban_company: " + iban_company
+                out.println("<h1>Error in Return, invalid values entered<br>iban_company: " + iban_company
                         + ", worker_id: " + worker_id + ", iban_seller: " + iban_seller + "</h1>");
                 out.println("</body>");
                 out.println("</html>");
             }
+            return;
         }
         
         worker.print();
         company.print();
         
+        System.out.println("iban_worker_company: " + worker.getIban_company() + ", " + iban_company + ", iban_company: " + company.getIban() + ", " + worker_id);
         Integer w_iban = Integer.parseInt(worker.getIban_company());
         Integer company_iban = Integer.parseInt(company.getIban());
         
-        System.out.println("iban_worker_company: " + worker.getIban_company() + ", " + iban_company + ", iban_company: " + company.getIban() + ", " + worker_id);   
-        //Check if worker is not from that company
-
+        
         //Check if worker is not from that company
         if( !worker.getIban_company().equals(company.getIban()) ){
             response.setContentType("text/html;charset=UTF-8");
@@ -95,26 +102,22 @@ public class returnCompany2 extends HttpServlet {
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
-                out.println("<title>Servlet agoraCompany</title>");            
+                out.println("<title>Servlet returnCompany</title>");            
                 out.println("</head>");
                 out.println("<body>");
-                out.println("<h1>Error in Agora, iban_worker is not the same with iban_company<br>iban_company: " 
+                out.println("<h1>Error in Return, iban_worker is not the same with iban_company<br>iban_company: " 
                         + company.getIban() + "<br>iban_worker: " + worker.getIban_company() + "</h1>");
                 out.println("</body>");
                 out.println("</html>");
             }
             return;
         }
-        
-        //search for previous transaction
-        search_trans = ectt.getCompanyTransaction(iban_company, cost, iban_seller, trans_type, cost, tr_date);
-        search_trans.print();
-        
-        
-        //Actions for epistrofh
+
+        //Actions for Return
         success = company.epistrofi(Integer.parseInt(cost));
         seller.print();
-     
+//        seller.agora(Integer.parseInt(cost));
+        
         //SetUp CompanyTransaction
         if( success ){
             seller.epistrofi(Integer.parseInt(cost));
@@ -131,10 +134,12 @@ public class returnCompany2 extends HttpServlet {
             out.println("<title>Servlet returnCompany</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet returnCompany at " + "DONE" + "</h1>");
+            out.println("<h1>Servlet returnCompany Successful <br>Transaction Info:" + 
+                   comp_trans.getString() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
+
 
         }else {
             //print message of failure
@@ -147,13 +152,13 @@ public class returnCompany2 extends HttpServlet {
                 out.println("<title>Servlet returnCompany</title>");            
                 out.println("</head>");
                 out.println("<body>");
-                out.println("<h1>Invalid Values for Epistrofh </h1>");
+                out.println("<h1>Invalid Values for Return </h1>");
                 out.println("</body>");
                 out.println("</html>");
             }
         }
+        return;
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -166,7 +171,11 @@ public class returnCompany2 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(returnCompany2.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -180,7 +189,13 @@ public class returnCompany2 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(returnCompany2.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(returnCompany2.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
