@@ -83,6 +83,14 @@ public class Seller {
                 ", profit:" + this.profit);
     }
 
+      public String getString() {
+        String info = "IBAN: " + this.getIban() + ", Name:" + this.getName()
+                + ", Debt: " + this.getDebt() + ", Promithia: " 
+                + this.getPromithia() + ", profit: " + this.getProfit();
+        
+        return info;
+    }
+
 
          public void setUpFromRequest(HttpServletRequest req) {
         
