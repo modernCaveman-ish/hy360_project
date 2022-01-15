@@ -80,6 +80,18 @@
         <servlet-name>returnCompany2</servlet-name>
         <servlet-class>servlets.returnCompany2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetAllGoodUsers</servlet-name>
+        <servlet-class>servlets.GetAllGoodUsers</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListAllGoodUsers</servlet-name>
+        <servlet-class>servlets.ListAllGoodUsers</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListUsersWithDebt</servlet-name>
+        <servlet-class>servlets.ListUsersWithDebt</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>findIBAN</servlet-name>
         <url-pattern>/findIBAN</url-pattern>
@@ -159,6 +171,18 @@
     <servlet-mapping>
         <servlet-name>returnCompany2</servlet-name>
         <url-pattern>/returnCompany2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetAllGoodUsers</servlet-name>
+        <url-pattern>/GetAllGoodUsers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListAllGoodUsers</servlet-name>
+        <url-pattern>/ListAllGoodUsers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListUsersWithDebt</servlet-name>
+        <url-pattern>/ListUsersWithDebt</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
