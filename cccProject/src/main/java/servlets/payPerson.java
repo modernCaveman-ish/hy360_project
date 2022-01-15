@@ -62,7 +62,7 @@ public class payPerson extends HttpServlet {
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
-                out.println("<title>Servlet agoraPerson</title>");            
+                out.println("<title>Servlet payPerson</title>");            
                 out.println("</head>");
                 out.println("<body>");
                 out.println("<h3>Person.payDebt() Success!!!<br>Person info: " + person.toString() + "</h3>");
@@ -76,7 +76,7 @@ public class payPerson extends HttpServlet {
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
-                out.println("<title>Servlet agoraPerson</title>");            
+                out.println("<title>Servlet payPerson</title>");            
                 out.println("</head>");
                 out.println("<body>");
                 out.println("<h3>Person.payDebt() Unsuccessful, invalid values...<br>Balance: " + person.getBalance() + "<br>Debt: " + person.getDebt() + "<br>Cost: " + cost + "</h3>");
