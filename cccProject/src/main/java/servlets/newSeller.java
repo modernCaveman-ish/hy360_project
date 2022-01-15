@@ -5,9 +5,16 @@
 package servlets;
 
 
+import connectDB.connectDB;
 import database.tables.EditSellerTable;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +37,18 @@ public class newSeller extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
+
+        connectDB connect = new connectDB();
+        Connection con = connect.connectionDB();
+        Statement st = con.createStatement();
+
+        EditSellerTable ect = new EditSellerTable();
+        Seller seller = new Seller();
+        
+        seller.setUpFromRequest(request);
+        ect.insertSeller(seller);
+
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -40,14 +58,15 @@ public class newSeller extends HttpServlet {
             out.println("<title>Servlet newSeller</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet newSeller at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet newSeller Successfull!!Info: " + seller.getString() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
+        st.close();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
+     /**
      * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
@@ -58,8 +77,13 @@ public class newSeller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(newSeller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(newSeller.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -73,12 +97,14 @@ public class newSeller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // processRequest(request, response);
-       EditSellerTable ect = new EditSellerTable();
-        Seller seller = new Seller();
-        
-        seller.setUpFromRequest(request);
-        ect.insertSeller(seller);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(newSeller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(newSeller.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+  
     }
 
     /**
@@ -92,3 +118,4 @@ public class newSeller extends HttpServlet {
     }// </editor-fold>
 
 }
+
