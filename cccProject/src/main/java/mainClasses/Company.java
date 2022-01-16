@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import database.tables.EditCompanyTable;
 
 
-public class Company {
+public class Company extends User{
     
     String iban;
     String name;
@@ -27,6 +27,20 @@ public class Company {
 
     public String getIban() {
         return iban;
+    }
+
+    public Company() {
+    }
+
+    
+    
+    public Company(Company comp) {
+        this.iban = comp.getIban();
+        this.name = comp.getName();
+        this.debt = comp.getDebt();
+        this.debt_limit = comp.getDebt_limit();
+        this.balance = comp.getBalance();
+        this.exp_date = comp.getExp_date();
     }
 
     public void setIban(String iban) {

@@ -16,12 +16,23 @@ import database.tables.EditSellerTable;
  *
  * @author stelios
  */
-public class Seller {
+public class Seller extends User{
     String iban;
     String name;
     String debt;
     String promithia;
     String profit;
+
+    public Seller() {
+    }
+    
+    public Seller(Seller seller) {
+        this.iban = seller.getIban();
+        this.name = seller.getName();
+        this.debt = seller.getDebt();
+        this.promithia = seller.getPromithia();
+        this.profit = seller.getProfit();
+    }
 
     public String getIban() {
         return iban;
@@ -83,13 +94,15 @@ public class Seller {
                 ", profit:" + this.profit);
     }
 
-      public String getString() {
+        public String getString() {
         String info = "IBAN: " + this.getIban() + ", Name:" + this.getName()
                 + ", Debt: " + this.getDebt() + ", Promithia: " 
                 + this.getPromithia() + ", profit: " + this.getProfit();
         
         return info;
     }
+      
+    
 
 
          public void setUpFromRequest(HttpServletRequest req) {

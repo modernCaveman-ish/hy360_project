@@ -21,13 +21,25 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author stelios
  */
-public class Person {
+public class Person extends User{
     String balance;
     String debt;
     String debt_limit;
     String exp_date;
     String iban;
     String name;
+
+    public Person() {
+    }
+    
+    public Person(Person person) {
+        this.balance = person.getBalance();
+        this.debt = person.getDebt();
+        this.debt_limit = person.getDebt_limit();
+        this.exp_date = person.getExp_date();
+        this.iban = person.getIban();
+        this.name = person.getName();
+    }
     
     public String getBalance() {
         return balance;
@@ -117,6 +129,15 @@ public class Person {
         
         return info;
     }
+    
+    public String getString(){
+        String info = "IBAN: " + this.iban + ", name: " + this.name + ", balance: " 
+                + this.balance + ", exp_date: " + this.exp_date + ", debt_limit: " 
+                + this.debt_limit + ", debt: " + this.debt;
+        
+        return info;
+    }
+    
     
     public boolean payDebt() {
         Integer balance = Integer.parseInt(this.getBalance());

@@ -1,10 +1,12 @@
 servlets/insertWorker.class
 database/tables/EditSellerTable.class
 database/tables/EditWorkerTable.class
+servlets/response.class
 servlets/deletePerson.class
 servlets/newPerson.class
 servlets/returnCompany2.class
 database/tables/EditPersonTransactionTable.class
+servlets/GetAllGoodUsers.class
 servlets/newCompany.class
 servlets/agoraPerson.class
 servlets/companyTransaction.class
@@ -13,6 +15,8 @@ mainClasses/Seller.class
 servlets/getPerson.class
 servlets/getAllPersons.class
 mainClasses/PersonTransaction.class
+servlets/ListUsersWithDebt.class
+servlets/ListAllGoodUsers.class
 servlets/findIBAN.class
 servlets/deleteSeller.class
 servlets/agoraCompany.class
@@ -33,4 +37,5 @@ connectDB/connectDB.class
 servlets/payPerson.class
 mainClasses/Company.class
 servlets/returnPerson.class
+mainClasses/User.class
 servlets/getWorker.class

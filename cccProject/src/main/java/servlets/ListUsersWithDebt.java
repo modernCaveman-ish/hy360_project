@@ -4,12 +4,27 @@
  */
 package servlets;
 
+import connectDB.connectDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import mainClasses.Company;
+import mainClasses.Person;
+import mainClasses.Seller;
+import mainClasses.User;
 
 /**
  *
@@ -27,7 +42,50 @@ public class ListUsersWithDebt extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
+        
+        Company company = new Company();
+        Person person   = new Person();
+        Seller seller   = new Seller();
+        
+        connectDB connect = new connectDB();
+        Connection con = connect.connectionDB();
+        Statement stm = con.createStatement();
+        
+        LinkedList<Company> comp_list = new LinkedList<Company>();
+        LinkedList<Seller> seller_list = new LinkedList<Seller>();
+        LinkedList<Person> person_list  = new LinkedList<Person>();
+        LinkedList<User> ll = new LinkedList();
+        
+        
+        //Company Query
+        String comp_query = "SELECT * FROM `company` WHERE debt > '0'";
+        //Seller Query
+        String seller_query = "SELECT * FROM `seller` WHERE debt > '0'";
+        //Person Query
+        String person_query = "SELECT * FROM `person` WHERE debt > '0'";
+        
+        
+        String mega_query = "(SELECT `iban`, `debt`, `name` FROM `seller` WHERE debt > 0 UNION ALL SELECT `iban`, `debt`, `name` FROM `person` WHERE debt > 0 UNION ALL SELECT `iban`, `debt`, `name` FROM `company` WHERE debt > 0) ORDER BY debt";
+        
+        ResultSet rs = stm.executeQuery(mega_query);
+        
+        
+        while(rs.next()){
+            User user = new User();
+            user.setIban(rs.getString("iban"));
+            user.setDebt(rs.getString("debt"));
+            user.setName(rs.getString("name"));
+            
+            ll.add(user);
+        }
+        
+        for(int i=0; i<ll.size(); i++){
+            System.out.println(ll.get(i).getDebt());
+        }
+        
+        
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -37,7 +95,11 @@ public class ListUsersWithDebt extends HttpServlet {
             out.println("<title>Servlet ListUsersWithDebt</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ListUsersWithDebt at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ListUsersWithDebt <br>Info<br></h1>");
+            for(int i=0; i<ll.size(); i++){
+                out.println("<h3>Iban: " + ll.get(i).getIban() + ", Name: " + ll.get(i).getName() + ", Debt: " + ll.get(i).getDebt() + "</h3>");
+            }
+            
             out.println("</body>");
             out.println("</html>");
         }
@@ -55,7 +117,13 @@ public class ListUsersWithDebt extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ListUsersWithDebt.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ListUsersWithDebt.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -69,7 +137,13 @@ public class ListUsersWithDebt extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ListUsersWithDebt.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ListUsersWithDebt.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
