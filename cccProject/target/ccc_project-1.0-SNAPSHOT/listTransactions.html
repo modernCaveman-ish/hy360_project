@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h2>List Person-Seller Transactions</h2>
+        <h5>Blank Person Iban or Seller Iban will still work for the other fields</h5>
+        <form action="BuyerSellerListTrans" method="POST">
+            Person Iban <input type="text" id="person_iban" name="person_iban">
+            <br>
+            Seller Iban <input type="text" id="seller_iban" name="seller_iban">
+            <br>
+            From-Date <input type="date" id="from_date" name="from_date">
+            <br>
+            To-Date <input type="date" id="to_date" name="to_date">
+            <br>
+            <input type="submit" value="listTransactions">
+        </form>
+        <br><br>
+        <h2>List Company-Seller Transactions</h2>
+        <h5>Blank Company Iban or Seller Iban or Worker_id will still work for the other fields</h5>
+        <form action="CompSellerTransList" method="POST">
+            Company Iban <input type="text" id="company_iban" name="company_iban">
+            <br>
+            Worker ID <input type="text" id="worker_id" name="worker_id">
+            <br>
+            Seller Iban <input type="text" id="seller_iban" name="seller_iban">
+            <br>
+            From-Date <input type="date" id="from_date" name="from_date">
+            <br>
+            To-Date <input type="date" id="to_date" name="to_date">
+            <br>
+            <input type="submit" value="listTransactions">
+        </form>
+
+
+    </body>
+</html>

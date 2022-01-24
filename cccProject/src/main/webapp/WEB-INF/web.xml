@@ -92,6 +92,14 @@
         <servlet-name>ListUsersWithDebt</servlet-name>
         <servlet-class>servlets.ListUsersWithDebt</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BuyerSellerListTrans</servlet-name>
+        <servlet-class>servlets.BuyerSellerListTrans</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CompSellerTransList</servlet-name>
+        <servlet-class>servlets.CompSellerTransList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>findIBAN</servlet-name>
         <url-pattern>/findIBAN</url-pattern>
@@ -183,6 +191,14 @@
     <servlet-mapping>
         <servlet-name>ListUsersWithDebt</servlet-name>
         <url-pattern>/ListUsersWithDebt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuyerSellerListTrans</servlet-name>
+        <url-pattern>/BuyerSellerListTrans</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CompSellerTransList</servlet-name>
+        <url-pattern>/CompSellerTransList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

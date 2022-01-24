@@ -4,6 +4,10 @@
  */
 package mainClasses;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -32,7 +36,15 @@ public class PersonTransaction {
     public void setType(Type type) {
         this.type = type;
     }
-
+    
+    public void setType(String type){
+        if( type == "PISTWSH"){
+            this.type = Type.PISTWSH;
+        } else if( type == "XREWSH") {
+            this.type = Type.XREWSH;
+        }
+    }
+        
     public String getIban_person() {
         return iban_person;
     }
@@ -80,5 +92,24 @@ public class PersonTransaction {
                 this.type = Type.XREWSH;
                 break;    
         }
+    }
+    
+    
+    public void setUpFromResultSet(ResultSet rs) {
+        try {
+            this.iban_person = rs.getString("iban_person");
+            this.iban_seller = rs.getString("iban_seller");
+            this.cost = rs.getString("cost");
+            this.tr_date = rs.getString("tr_date");
+            this.setType(rs.getString("type"));
+        } catch (SQLException ex) {
+            Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    }
+    
+    public String getString(){
+        String info = "iban_person: " + this.iban_person + ", iban_seller: " + this.iban_seller +
+                        ", cost: " + this.cost + ", tr_date: " + this.tr_date + ", type: " + this.getType().toString();
+        return info;
     }
 }

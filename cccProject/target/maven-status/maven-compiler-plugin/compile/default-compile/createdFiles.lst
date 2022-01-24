@@ -6,9 +6,11 @@ servlets/deletePerson.class
 servlets/newPerson.class
 servlets/returnCompany2.class
 database/tables/EditPersonTransactionTable.class
+servlets/BuyerSellerListTrans.class
 servlets/GetAllGoodUsers.class
 servlets/newCompany.class
 servlets/agoraPerson.class
+servlets/CompSellerTransList.class
 servlets/companyTransaction.class
 database/tables/EditCompanyTable.class
 mainClasses/Seller.class

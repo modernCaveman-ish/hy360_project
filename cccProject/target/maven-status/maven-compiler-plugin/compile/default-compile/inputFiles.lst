@@ -6,6 +6,8 @@
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/mainClasses/CompanyTransaction.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/payCompany.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/newCompany.java
+/home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/BuyerSellerListTrans.java
+/home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/CompSellerTransList.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/deletePerson.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/servlets/deleteCompany.java
 /home/stelios/Desktop/send4/hy360_project/cccProject/src/main/java/mainClasses/Worker.java
